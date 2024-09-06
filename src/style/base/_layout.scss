@@ -1,52 +1,255 @@
 @use '../variables/_colors' as *;
 @use '../mixins/mixins' as *;
 
-body, html {
-	height: 100%;
+.hidden {
+	display: none;
 }
 
 .p-wrapper {
 	background: map-get($colors, 'background-light');
+	overflow: hidden;
 }
 
-nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	min-height: 86px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 40px;
-	z-index: 100;
-}
+.top-block {
+	max-width: 794px;
+	position: relative;
+	z-index: 10;
 
-.nav-buttons {
-	display: flex;
-	gap: 40px;
+	&__text {
+		@include text('background-red', 'bg', 'italic');
+	}
 
-	&__link {
-		@include text('main', 'md');
+	&__h1 {
+		@include heading('1');
+		text-transform: uppercase;
+		margin-bottom: 40px;
+	}
+
+	&__button-shape {
+		transform: skewX(-10deg);
+		border-radius: 3px;
+		background: map-get($colors, 'background-red');
+		display: block;
+		width: 205px;
+		height: 50px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+	}
+
+	&__button-text {
+		position: relative;
+		z-index: 2;
+	}
+
+	&__button {
+		display: block;
+		position: relative;
+		width: 205px;
+		height: 50px;
+		line-height: 50px;
+		color: map-get($colors, 'main-white');
+		text-align: center;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+
+		&:hover {
+			.top-block__button-shape {
+				box-shadow: 7px 7px 0px map-get($colors, 'dark-red');
+			}
+		}
+	
+		&:active {
+			.top-block__button-shape {
+				box-shadow: none;
+				background: map-get($colors, 'dark-red');
+			}
+		}
 	}
 }
 
-.p-logo {
-	width: 191px;
-	height: 46px;
-}
-
 section {
-	height: 100%;
+	height: 100vh;
     position: relative;
-    transform: translate3d(0px, 0px, 0px);
 }
 
-.top-heading-text {
-	@include text('background-red', 'bg', 'italic');
+.section {
+	&__h2 {
+		@include heading('2');
+		text-transform: uppercase;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	&-1 {
+		padding-top: 184px;
+
+		&::after {
+			content: "";
+			top: 0;
+			right: -200px;
+			transform: skewX(-11deg);
+			width: 653px;
+			height: 100%;
+			background: map-get($colors, 'background-red');
+			z-index: 1;
+			display: block;
+			position: absolute;
+		}
+	}
+
+	&-2 {
+		background: map-get($colors, 'background-red');
+	}
+
+	&-3 {
+		background: map-get($colors, 'background-red');
+	}
+
+	&-4 {
+		background: map-get($colors, 'background-light');
+		display: flex;
+    	flex-direction: column;
+		padding-top: 183px;
+
+		form {
+			flex: 1;
+		}
+	}
 }
 
-.h1 {
-	@include heading('1');
-	text-transform: uppercase;
+.top-bike {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	right: 0;
 }
+
+.animated-text {
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	&__inner {
+		display: flex;
+		gap: 20px;
+
+		&:nth-child(odd) {
+			.animated-text__block {
+				&:nth-child(odd) {
+					color: map-get($colors, 'main-white');
+				}
+
+				&:nth-child(even) {
+					color: map-get($colors, 'background-red');
+					text-shadow: -3px -3px 1px map-get($colors, 'main-white'), 3px -3px 0 map-get($colors, 'main-white'), -3px 3px 0 map-get($colors, 'main-white'), 3px 3px 0 map-get($colors, 'main-white');
+				}
+			}
+		}
+
+		&:nth-child(even) {
+			.animated-text__block {
+				&:nth-child(odd) {
+					color: map-get($colors, 'background-red');
+					text-shadow: -3px -3px 1px map-get($colors, 'main-white'), 3px -3px 0 map-get($colors, 'main-white'), -3px 3px 0 map-get($colors, 'main-white'), 3px 3px 0 map-get($colors, 'main-white');
+				} 
+
+				&:nth-child(even) {
+					color: map-get($colors, 'main-white');
+				}
+			}
+		}
+	}
+
+	&__block {
+		font-family: 'tt_commons_trialbold_italic';
+		font-size: 120px;
+		line-height: 100px;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+	}
+}
+
+.block-with-button {
+	width: 438px;
+	height: 584px;
+	background: map-get($colors, 'main-white');
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: relative;
+	z-index: 10;
+
+	&__image {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__button {
+		--size: 135px;
+		position: absolute;
+		bottom: -65px;
+    	right: -60px;
+		z-index: 2;
+		width: var(--size);
+		height: var(--size);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+
+		canvas {
+			position: absolute;
+		}
+	}
+
+	.video-wrapper {
+		width: 438px;
+		height: 584px;
+		overflow: hidden;
+	}
+
+	#video-bike {
+		width: 438px;
+		height: auto;
+	}
+
+	&__inner-button {
+		--size: 99px;
+		border: 0.5px solid map-get($colors, 'main');
+		background: map-get($colors, 'main-white');
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 100%;
+		width: var(--size);
+		height: var(--size);
+		flex: none;
+	}
+
+	&__arrow {
+		&_simple {
+			width: 29px;
+			height: 32px;
+			flex: none;
+		}
+
+		&_complex {
+			width: 27px;
+			height: 26px;
+			flex: none;
+		}
+	}
+}
+
+
+

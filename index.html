@@ -9,13 +9,15 @@
     <title>Велосипеды - Юлия Власова</title>
     <link href="src/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="output/css/global.min.css" type="text/css" />
-    <link rel="stylesheet" href="src/style/fonts/soviet-font.css" type="text/css" />
+    <link rel="preload" as="style" href="src/style/fonts/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="src/style/fonts/fonts.css" type="text/css" />
    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="output/js/popup.min.js" type="text/javascript"></script>
     <script src="output/js/form-validation.min.js" type="text/javascript"></script>
     <script src="output/js/mobile-menu.min.js" type="text/javascript"></script>
     <script src="output/js/script-canvas.min.js" type="text/javascript"></script>
+    <script src="output/js/animate-pages.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -33,85 +35,229 @@
                 <a href="#" class="nav-buttons__link">Видео</a>
                 <a href="#" class="nav-buttons__link">Контакты</a>
             </div>
-            <svg class="nav-mobile-burger">
-                <use xlink:href="#nav-mobile-burger"></use>
-            </svg>
-            <svg class="nav-mobile-menu-close">
-                <use xlink:href="#close-popup"></use>
-            </svg>
+            <div class="nav-mobile-burger"></div>
         </nav>
         <main>
             <section class="section-1">
-                <div class="top-heading-text">Быстрый. Дерзкий</div>
-                <h1 class="h1">
-                    Велосипед советский
-                </h1>
+                <div class="top-block">
+                    <div class="top-block__text">Быстрый. Дерзкий</div>
+                    <h1 class="top-block__h1">
+                        Велосипед советский
+                    </h1>
+
+                    <a class="top-block__button" href="#bottom-form">
+                        <span class="top-block__button-shape"></span>
+                        <span class="top-block__button-text">Заказать</span>
+                    </a>
+                </div>
+
+                <picture class="top-bike">
+                    <source srcset="src/images/bike@2x.png"
+                        type="image/png" media="(min-width: 800px)">
+                    <source
+                        srcset="src/images/bike-mobile@2x.png"
+                        type="image/png" media="(max-width: 800px)">
+                    <img class="top-bike__img"
+                        src="src/images/bike@2x.png"
+                        type="image/png"
+                        data-src="src/images/bike@2x.png"
+                        alt="" width="870" height="756">
+                </picture>
             </section>
             <section class="section-2">
-                <canvas id="canv" width="600" height="250"></canvas>
+                <div class="animated-text">
+                    <div class="animated-text__inner">
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                    </div>
+                    <div class="animated-text__inner">
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                        <div class="animated-text__block">
+                            видео
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-with-button">
+                    <div class="block-with-button__image">
+                        <div class="video-wrapper">
+                            <video id="video-bike" width="438" height="584" muted>
+                                <source src="src/images/video.mp4" type="video/mp4">
+                                Your browser does not support HTML video.
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="block-with-button__button">
+                        <div class="block-with-button__inner-button">
+                            <svg class="block-with-button__arrow block-with-button__arrow_complex">
+                                <use xlink:href="#complex-arrow-in-button"></use>
+                            </svg>
+                        </div>
+                        <canvas id="canv-go-1" width="200" height="50"></canvas>
+                        <canvas id="canv-go-2" width="200" height="50"></canvas>
+                        <canvas id="canv-go-3" width="200" height="50"></canvas>
+                        <canvas id="canv-go-4" width="200" height="50"></canvas>
+                    </div>
+                </div>
             </section>
             <section class="section-3">
-                <canvas id="canv" width="600" height="250"></canvas>
+                <div class="animated-text">
+                    <div class="animated-text__inner">
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                    </div>
+                    <div class="animated-text__inner">
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                        <div class="animated-text__block">
+                            велосипед
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-with-button">
+                    <div class="block-with-button__image">
+                        <picture class="block-with-button__img">
+                            <source srcset="src/images/bike@2x.png"
+                                type="image/png" media="(min-width: 800px)">
+                            <source
+                                srcset="src/images/bike-mobile@2x.png"
+                                type="image/png" media="(max-width: 800px)">
+                            <img class="top-bike__img"
+                                src="src/images/bike@2x.png"
+                                type="image/png"
+                                data-src="src/images/bike@2x.png"
+                                alt="" width="407" height="487">
+                        </picture>
+                    </div>
+
+                    <div class="block-with-button__button">
+                        <div class="block-with-button__inner-button">
+                            <svg class="block-with-button__arrow block-with-button__arrow_simple">
+                                <use xlink:href="#arrow-in-button"></use>
+                            </svg>
+                        </div>
+                        <canvas id="canv-watch-1" width="200" height="50"></canvas>
+                        <canvas id="canv-watch-2" width="200" height="50"></canvas>
+                        <canvas id="canv-watch-3" width="200" height="50"></canvas>
+                        <canvas id="canv-watch-4" width="200" height="50"></canvas>
+                    </div>
+                </div>
             </section>
-            <section class="section-4">
+            <section class="section-4" id="bottom-form">
+                <h2 class="section__h2">Оставить заявку</h2>
                 <form id="register-form" class="register-form" method="POST" action="">
                     <div class="register-form__group">
-                        <div class="register-form__container">
-                            <input id="register-form-name" class="register-form__field" type="text" name="name"
-                                placeholder="Имя" value="">
-                        </div>
-            
+                        <input id="register-form-name" class="register-form__field" type="text" name="name"
+                                placeholder="Ваше имя" value="">
                         <div class="hidden">
                             <span class="register-form__help-block"></span>
                         </div>
                     </div>
             
-                    <div class="register-form__group">
-                        <div class="register-form__container">
-                            <input id="register-form-site" class="register-form__field" name="site"
-                                placeholder="Сайт компании" value="" type="url">
-                        </div>
+                    <div class="register-form__group register-form__group_indent">
+                        <input id="register-form-tel" class="register-form__field" name="tel"
+                                placeholder="+7 ___-___-__-__" value="" type="tel">
                         <div class="hidden">
                             <span class="register-form__help-block"></span>
                         </div>
                     </div>
             
-                    <div class="register-form__group">
-                        <div class="register-form__container">
-                            <input id="register-form-tel" class="register-form__field" name="tel"
-                                placeholder="Телефон" value="" type="tel">
-                        </div>
-                        <div class="hidden">
-                            <span class="register-form__help-block"></span>
-                        </div>
-                    </div>
-            
-                    <input type="submit" name="submit"
-                        class="register-form__button r-button register-form__button_disabled" value="Получить код"
+                   <div class="register-form__submit">
+                        <input type="button" name="submit"
+                        class="register-form__button r-button register-form__button_disabled" value="Отправить"
                         id="register-form-button">
             
-                    <label for="register-form-input" class="register-form-agree">
-                        <input type="checkbox" id="register-form-input" name="agreement"
-                            value="" class="register-form-agree__checkbox">
-                        <span class="register-form-agree__checkmark"></span>
-                        <span class="register-form-agree__text">
-                            Отправляя сведения через электронную форму, вы даете согласие на обработку персональных
-                            данных, в том числе сбор, хранение и передачу третьим лицам представленной вами
-                            информации на условиях <a class="register-form-agree__link" href="#">Политики обработки
-                                персональных данных</a>.
-                        </span>
-                    </label>
+                        <label for="register-form-input" class="register-form-agree">
+                            <input type="checkbox" id="register-form-input" name="agreement"
+                                value="" class="register-form-agree__checkbox">
+                            <span class="register-form-agree__checkmark"></span>
+                            <span class="register-form-agree__text">
+                                Нажимая на кнопку «Отправить» вы соглашаетесь с нашей политикой конфиденциальности
+                            </span>
+                        </label>
+                   </div>
+
+                   <div class="success-message success-message_visible">
+                        <svg class="success-message__icon">
+                            <use xlink:href="#success-icon"></use>
+                        </svg>
+                        <div class="success-message__text">
+                            Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время
+                        </div>
+                   </div>
                 </form>
 
-                <footer>
-
+                <footer class="footer">
+                    <div>
+                        &copy; Свобода. Равенство. Братство
+                    </div>
+                    <div>
+                        <span class="footer__text_dark">Сделано в</span> <a class="footer__link" href="#" target="_blank">PetrogradWeb</a>
+                    </div>
                 </footer>
             </section>
         </main>
-      
-
-       
-       
     </div>
 
     <svg width="0" height="0" class="hidden">
@@ -131,47 +277,16 @@
             <path d="M81.195 41.498V35.2279H83.6724L87.8597 41.498H91.499L86.2374 33.6275L91.214 26.1516H87.5528L83.6724 32.2463H81.195V26.1516H77.9065V41.498H81.195Z" fill="#FC0000"/>
             <path d="M93.2837 26.1516V41.498H104.224V38.6041H96.5723V35.1841H103.434V32.3121H96.5723V29.0455H104.092V26.1516H93.2837Z" fill="#FC0000"/>
         </symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 318" fill="none" id="violet-line">
-            <circle cx="3" cy="315" r="3" fill="#151515" />
-            <path
-                d="M2.00002 315C2.00002 315.552 2.44773 316 3.00002 316C3.5523 316 4.00002 315.552 4.00002 315H2.00002ZM4.00002 315L4 -62L2 -62L2.00002 315H4.00002Z"
-                fill="#8F8FFF" />
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 32" fill="none" id="arrow-in-button">
+            <path d="M29 16L0.499999 31.5885L0.5 0.411542L29 16Z" fill="#192632"/>
         </symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 216" fill="none" id="pink-line">
-            <circle cx="3" cy="213" r="3" fill="#151515" />
-            <path
-                d="M2.00002 213C2.00002 213.552 2.44773 214 3.00002 214C3.5523 214 4.00002 213.552 4.00002 213H2.00002ZM4.00002 213L4 -164L2 -164L2.00002 213H4.00002Z"
-                fill="#FE64FA" />
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 26" fill="none" id="complex-arrow-in-button">
+            <path d="M2.72412 2.96228H23.7754V24.0136" stroke="#192632" stroke-width="5"/>
+            <path d="M2.72412 24.0136L23.7754 2.96228" stroke="#192632" stroke-width="5"/>
         </symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 327 333" fill="none" id="star">
-            <path
-                d="M219.902 194.299L309.186 167.433L209.436 152.555L232.053 42.2781L168.06 124.184L88.1461 27.8374L128.543 146.332L17.5679 161.979L136.145 200.251L107.681 323.193L181.679 220.774L255.291 289.224L219.902 194.299Z"
-                stroke="white" stroke-width="23.9667" />
-        </symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" fill="none" id="arrow-right">
-            <path d="M4 8L22 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M16 1L23 8L16 15" stroke="white" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-        </symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 189 138" fill="none" id="sale-label">
-            <rect y="97.9536" width="187" height="46" rx="23" transform="rotate(-29.4544 0 97.9536)" fill="#FFEB1C" />
-            <path
-                d="M57.96 95.1644L63.4352 92.0724C63.664 92.3474 63.9737 92.5216 64.3643 92.595C64.7471 92.6545 65.2037 92.6172 65.7343 92.4829C66.257 92.3347 66.8387 92.0797 67.4796 91.7178C68.3155 91.2457 68.9162 90.7963 69.2815 90.3695C69.6608 89.9348 69.7442 89.5293 69.5318 89.1532C69.3902 88.9024 69.1398 88.7682 68.7807 88.7505C68.4137 88.7188 67.8035 88.9073 66.95 89.3157L64.2642 90.6119C61.8232 91.7883 59.8403 92.2466 58.3154 91.9869C56.7906 91.7271 55.6348 90.9006 54.848 89.5074C54.1872 88.3371 53.9708 87.1731 54.1989 86.0152C54.4271 84.8574 55.0301 83.7451 56.0079 82.6784C56.9997 81.6038 58.3037 80.6102 59.9198 79.6975C61.4941 78.8085 63.0132 78.2446 64.477 78.006C65.9469 77.7455 67.2614 77.8117 68.4203 78.2046C69.5933 78.5896 70.5135 79.2918 71.1811 80.3113L65.7059 83.4033C65.5225 83.1761 65.2612 83.0389 64.9221 82.9915C64.5969 82.9363 64.1978 82.9779 63.7247 83.1164C63.2517 83.2549 62.7156 83.4933 62.1166 83.8316C61.3503 84.2644 60.7875 84.6832 60.4283 85.0883C60.0829 85.4854 60.0086 85.8581 60.2053 86.2064C60.339 86.4433 60.5785 86.5745 60.9237 86.6C61.2828 86.6177 61.8473 86.446 62.6172 86.0847L65.6491 84.6206C67.2367 83.8526 68.6064 83.3823 69.7584 83.2095C70.9024 83.0228 71.8674 83.121 72.6534 83.504C73.4533 83.8792 74.1128 84.5265 74.6321 85.446C75.2851 86.6024 75.5142 87.8052 75.3193 89.0545C75.1244 90.3038 74.5447 91.5224 73.5801 92.7102C72.6216 93.8763 71.3204 94.9235 69.6764 95.8519C67.9767 96.8117 66.3562 97.4237 64.8148 97.6878C63.2734 97.9519 61.9045 97.8705 60.708 97.4437C59.5254 97.009 58.6094 96.2492 57.96 95.1644ZM81.6449 85.124L79.2256 80.8399L89.9044 74.8093L92.3237 79.0934L81.6449 85.124ZM83.3087 66.9854L99.0352 78.7762L93.2883 82.0216L80.3699 71.7871L81.7492 71.0082L83.8424 87.3559L78.0955 90.6013L76.1198 71.0452L83.3087 66.9854ZM97.3958 59.0301L104.902 72.3212L101.108 71.266L112.77 64.6807L115.484 69.4873L100.855 77.7483L92.0041 62.0749L97.3958 59.0301ZM126.314 50.5825L128.414 54.3023L116.607 60.9702L114.506 57.2503L126.314 50.5825ZM119.256 57.0214L121.587 63.3948L118.264 62.2943L130.155 55.5793L132.563 59.8424L117.391 68.4104L114.115 59.9246L108.54 52.7369L123.607 44.228L126.015 48.4912L114.228 55.1472L115.002 51.7337L119.256 57.0214Z"
-                fill="#151515" />
-            <circle cx="163" cy="31" r="3" fill="#151515" />
-            <circle cx="182" cy="5" r="3" fill="#151515" />
-            <path
-                d="M182.389 3.59114C185.892 6.45234 188.21 10.7144 188.832 15.4398C189.455 20.1651 188.331 24.9667 185.708 28.7882C183.085 32.6096 179.178 35.138 174.847 35.817C170.515 36.496 166.114 35.2701 162.611 32.4089L163.923 30.4964C166.961 32.9779 170.779 34.0411 174.535 33.4522C178.292 32.8633 181.68 30.6705 183.955 27.3563C186.23 24.042 187.204 19.8778 186.665 15.7796C186.125 11.6814 184.115 7.98502 181.077 5.50358L182.389 3.59114Z"
-                fill="white" />
-        </symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" id="close-popup">
-            <path
-                d="M22.0014 8L16 14L10 8L8 10L14 16L8 22L10 24L16 18L22.0014 24L24.0014 22L18.0014 16L24.0014 10L22.0014 8Z"
-                fill="#F0F0F0" />
-        </symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" id="nav-mobile-burger">
-            <path d="M15 19H47" stroke="#E0EAFF" stroke-width="2" stroke-linecap="round" />
-            <path d="M31 29H47" stroke="#E0EAFF" stroke-width="2" stroke-linecap="round" />
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" id="success-icon">
+            <circle cx="12" cy="12" r="11.5" stroke="#27AE60"/>
+            <path d="M8 12L11 15L16 9" stroke="#27AE60"/>
         </symbol>
     </svg>
 </body>

@@ -1,0 +1,66 @@
+@use "../variables/breakpoints" as breakpoint;
+
+/// @example scss
+/// @include breakpointUi(lt-md);
+
+
+@mixin breakpointUi($size) {
+
+  @if $size == xs {
+    @media screen and (max-width: breakpoint.$point--xs - 1) {
+      @content;
+    }
+  } @else if $size == gt-xs {
+    @media screen and (min-width: breakpoint.$point--xs) {
+      @content;
+    }
+  }
+
+  @else if $size == sm {
+    @media screen and (min-width: breakpoint.$point--xs) and (max-width: breakpoint.$point--sm - 1) {
+      @content;
+    }
+  } @else if $size == gt-sm {
+    @media screen and (min-width: breakpoint.$point--sm) {
+      @content;
+    }
+  }
+
+  @else if $size == md {
+    @media screen and (min-width: breakpoint.$point--sm) and (max-width: breakpoint.$point--md - 1) {
+      @content;
+    }
+  } @else if $size == lt-md {
+    @media screen and (max-width: calc(breakpoint.$point--sm - 1)) {
+      @content;
+    }
+  } @else if $size == gt-md {
+    @media screen and (min-width: breakpoint.$point--md) {
+      @content;
+    }
+  }
+
+  @else if $size == lg {
+    @media screen and (min-width: breakpoint.$point--md) and (max-width: breakpoint.$point--lg - 1) {
+      @content;
+    }
+  } @else if $size == lt-lg {
+    @media screen and (max-width: breakpoint.$point--md - 1) {
+      @content;
+    }
+  } @else if $size == gt-lg {
+    @media screen and (min-width: breakpoint.$point--lg) {
+      @content;
+    }
+  }
+
+  @else if $size == xl {
+    @media screen and (min-width: breakpoint.$point--lg) {
+      @content;
+    }
+  } @else if $size == lt-xl {
+    @media screen and (max-width: breakpoint.$point--lg - 1) {
+      @content;
+    }
+  }
+}

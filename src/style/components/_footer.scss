@@ -1,0 +1,22 @@
+@use '../variables/_colors' as *;
+@use '../mixins/mixins' as *;
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	background: map-get($colors, 'main');
+	color: map-get($colors, 'main-white');
+
+	&__text {
+		&_dark {
+			color: #5A636B;
+		}
+	}
+
+	&__link {
+		color: map-get($colors, 'main-white');
+		border-bottom: 1px solid currentColor;
+	}
+}

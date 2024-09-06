@@ -1,0 +1,153 @@
+@use '../variables/_colors' as *;
+@use '../mixins/mixins' as *;
+
+.register-form {
+	max-width: 613px;
+    margin: 0 auto;
+
+    &__group {
+        margin-bottom: 10px;
+
+        &_indent {
+            margin-bottom: 40px; 
+        }
+    }
+
+    &__help-block {
+        @include text('background-red', 'sm');
+    }
+
+    &__field {
+        border: 1px solid map-get($colors, 'border-color');
+        background: map-get($colors, 'main-white');
+        height: 60px;
+        width: 100%;
+        outline: none;
+        box-shadow: none;
+        @include text('main', 'sm');
+        padding: 10px 20px;
+
+        &::-webkit-input-placeholder { color: map-get($colors, 'border-color'); }
+        &:-ms-input-placeholder { color: map-get($colors, 'border-color'); }
+        &::-ms-input-placeholder { color: map-get($colors, 'border-color'); }
+        &::-moz-placeholder { color: map-get($colors, 'border-color'); }
+        &::placeholder { color: map-get($colors, 'border-color');}
+
+        &:focus, &:hover {
+            border: 1px solid map-get($colors, 'main');
+        }
+
+        &_error {
+            border: 1px solid map-get($colors, 'background-red');
+            color: map-get($colors, 'background-red');
+        }
+    }
+
+    &__button {
+        width: 198px;
+        height: 57px;
+        line-height: 57px;
+        display: block;
+		position: relative;
+		color: map-get($colors, 'main-white');
+		text-align: center;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+        background: map-get($colors, 'background-red');
+        border: none;
+        outline: none;
+        box-shadow: none;
+        cursor: pointer;
+
+        &:hover {
+			box-shadow: 7px 7px 0px map-get($colors, 'dark-red');
+		}
+	
+		&:active {
+			box-shadow: none;
+			background: map-get($colors, 'dark-red');
+		}
+    }
+
+    &__submit {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .register-form-agree {
+        @include text('main', 'sm');
+        position: relative;
+        user-select: none;
+        cursor: pointer;
+        display: flex;
+        gap: 10px;
+
+        &__checkbox {
+            opacity: 0;
+        }
+        
+        &__checkmark {
+            --size: 10px;
+            border: 1px solid map-get($colors, 'main');
+            width: var(--size);
+            height: var(--size);
+            border-radius: 0;
+            top: 3px;
+            left: 11px;
+            box-shadow: none;
+            position: absolute;
+        }
+
+        &:hover {
+            .register-form-agree__checkmark {
+                border: 1px solid map-get($colors, 'background-red');
+            }
+        }
+        
+        & input:checked ~ .register-form-agree {
+            &__checkmark {
+                border: 1px solid map-get($colors, 'background-red');
+
+                &::after {
+                    content: "";
+                    left: 2px;
+                    top: 2px;
+                    width: 4px;
+                    height: 4px;
+                    background: map-get($colors, 'background-red');
+                    display: block;
+                    position: absolute;
+                }
+            }
+        }
+
+        &__text_animated {
+            animation: change-color 2s;
+        }
+        
+    }
+}
+
+.success-message {
+    display: none;
+    gap: 15px;
+    margin-top: 15px;
+
+    &_visible {
+        display: flex;
+    }
+
+    &__icon {
+        --size: 24px;
+        width: var(--size);
+        height: var(--size);
+        flex: none;
+    }
+}
+
+@keyframes change-color {
+	0% {color: map-get($colors, 'main');}
+	50% {color: map-get($colors, 'background-red');}
+	100% {color: map-get($colors, 'main');}
+}

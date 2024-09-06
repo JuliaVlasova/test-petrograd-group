@@ -1,0 +1,62 @@
+@use '../variables/_colors' as *;
+@use '../mixins/mixins' as *;
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 86px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	z-index: 100;
+}
+
+.nav-mobile-burger {
+	--size: 40px;
+	
+	position: relative;
+	width: var(--size);
+	height: var(--size);
+	cursor: pointer;
+	display: none;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		width: 30px;
+		height: 3px;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: map-get($colors, 'main');
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		width: 10px;
+		height: 3px;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: map-get($colors, 'main');
+		margin-top: 3px;
+	}
+}
+
+.nav-buttons {
+	display: flex;
+	gap: 40px;
+
+	&__link {
+		@include text('main', 'md');
+	}
+}
+
+.p-logo {
+	width: 191px;
+	height: 46px;
+}

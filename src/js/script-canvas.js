@@ -1,10 +1,10 @@
 "use strict";
 
 window.onload = function () {
-    let canvas = document.getElementById("canv");
+    let canvas = document.getElementById("canv-watch-1");
     let context = canvas.getContext("2d");
 
-    context.font = "50px Arial";
+    context.font = "50px 'tt_commons_trialregular'";
     context.fillStyle = "#192632";
 
     let string = "Смотреть видео";

@@ -1,5 +1,8 @@
+@use '../variables/variables' as *;
+
 body {
-	font-family: "Unbounded", system-ui;
+	font-family: $base-font-family;
+	font-size: $base-font-size;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -26,6 +29,11 @@ input[type="button"] {
     -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none;
+	font-family: $base-font-family;
+}
+
+input {
+	font-family: $base-font-family;
 }
 
 *,

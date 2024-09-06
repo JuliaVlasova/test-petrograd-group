@@ -1,3 +1,6 @@
 @use 'base/normalize' as *;
-@use 'fonts/soviet-font.scss' as *;
 @use 'base/layout' as *;
+
+@use 'components/nav' as *;
+@use 'components/form' as *;
+@use 'components/footer' as *;

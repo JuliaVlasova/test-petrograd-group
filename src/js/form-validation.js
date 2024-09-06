@@ -11,7 +11,7 @@ $(document).ready(function() {
     const noTel = "Надо ввести номер телефона";
     const wrongTel = "Номер введен неверно";
 
-    const digitsOnlyPattern = /^\d+$/; // /^\+7 (\d\d\d) \d\d\d-\d\d-\d\d/;
+    const digitsOnlyPattern = /^\+7 \d\d\d \d\d\d-\d\d-\d\d/; // /^\d+$/;
     const urlPattern = new RegExp('^(https?:\\/\\/)?'   + // проверка протокола
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'  + // проверка имени домена
         '((\\d{1,3}\\.){3}\\d{1,3}))'                       + // проверка ip адреса 
