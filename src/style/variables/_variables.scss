@@ -1,0 +1,7 @@
+@use "colors" as *;
+@use "text" as *;
+@forward "text";
+
+$base-font-family: 'Roboto', Arial, sans-serif;
+$base-font-size: map-get($text--size, 'md');
+$base-line-height: 1.15;

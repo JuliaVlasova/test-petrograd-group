@@ -1,0 +1,9 @@
+@use "../functions/font-size" as f;
+/// Font size mixin.
+/// Used to convert to relative units rem.
+
+@mixin fontSized($size) {
+  $size: $size + 0px;
+  font-size: $size; //Fallback in px
+  font-size: f.calculateRemSize($size);
+}

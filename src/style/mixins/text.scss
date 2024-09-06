@@ -1,0 +1,37 @@
+@use "../variables/text" as *;
+@use "../variables/colors" as *;
+@use "font-size" as fz;
+
+// @include text('background-red', 'bg', 'italic');
+
+@mixin text(
+  $style: 'main',
+  $size: null,
+  $weight: 'regular',
+  $fontStyle: 'normal',
+  $line-height: 'normal',
+) {
+  @if ($style) {
+    $color: map-get($colors, $style);
+    color: $color;
+  }
+
+  @if ($size) {
+    @include fz.fontSized(map-get($text--size, $size));
+  }
+
+  @if ($weight) {
+    @if ($weight == 'regular') {
+        font-weight: 400;
+    } @else if ($weight == 'bold') {
+        font-weight: 700;
+    }
+  }
+  @if $fontStyle == 'italic' {
+    font-style: italic;
+  }
+
+  @if ($line-height == 'normal') {
+    line-height: map-get($text--line-height, $size);
+  }
+}

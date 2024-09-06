@@ -1,0 +1,10 @@
+
+@font-face {
+	font-family: 'soviet_fontregular';
+    src: url('../../fonts/soviet-font/soviet_font-webfont.woff2') format('woff2'),
+         url('../../fonts/soviet-font/soviet_font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+

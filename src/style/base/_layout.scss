@@ -1,0 +1,52 @@
+@use '../variables/_colors' as *;
+@use '../mixins/mixins' as *;
+
+body, html {
+	height: 100%;
+}
+
+.p-wrapper {
+	background: map-get($colors, 'background-light');
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 86px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	z-index: 100;
+}
+
+.nav-buttons {
+	display: flex;
+	gap: 40px;
+
+	&__link {
+		@include text('main', 'md');
+	}
+}
+
+.p-logo {
+	width: 191px;
+	height: 46px;
+}
+
+section {
+	height: 100%;
+    position: relative;
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.top-heading-text {
+	@include text('background-red', 'bg', 'italic');
+}
+
+.h1 {
+	@include heading('1');
+	text-transform: uppercase;
+}
