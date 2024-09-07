@@ -19,11 +19,22 @@ $(document).ready(function() {
 
                 if (scroll >= section1Height) {
                     $("nav").removeClass("header_absolute header_dark").addClass("animate-down header_light");
+                    $("svg #logo").addClass("light");
+
+                    if (scroll >= sectionsHeight) {
+                        $("nav").addClass("header_absolute header_dark").removeClass("header_light");
+                        $("svg #logo").removeClass("light");
+                    } else {
+                        $("nav").removeClass("header_absolute header_dark").addClass("header_light");
+                        $("svg #logo").addClass("light");
+                    }
                 } else {
                     $("nav").addClass("header_absolute header_dark").removeClass("animate-down header_light");
+                    $("svg #logo").removeClass("light");
                 }
             } else {
                 $("nav").removeClass("header_absolute");
+                $("svg #logo").removeClass("light");
             }
         });
     }

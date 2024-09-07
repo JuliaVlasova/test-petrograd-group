@@ -98,3 +98,11 @@ nav {
 	from {top: -80px}
 	to {top: 0}
 }
+
+svg #logo {
+	&.light {
+		path {
+			fill: #fff;
+		}
+	}
+}
