@@ -10,8 +10,12 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 40px;
+	padding: 0 45px 0 60px;
 	z-index: 100;
+}
+
+.header_absolute {
+	position: absolute;
 }
 
 .nav-mobile-burger {
@@ -49,10 +53,32 @@ nav {
 
 .nav-buttons {
 	display: flex;
-	gap: 40px;
+	gap: 8px;
 
 	&__link {
-		@include text('main', 'md');
+		padding: 32px 16px;
+	}
+
+	&_dark {
+		.nav-buttons__link {
+			@include text('main', 'md');
+
+			&:hover {
+				color: map-get($colors, 'white');
+				background: map-get($colors, 'background-red');
+			}
+		}
+	}
+
+	&_light {
+		.nav-buttons__link {
+			@include text('white', 'md');
+
+			&:hover {
+				color: map-get($colors, 'background-red');
+				background: map-get($colors, 'white');
+			}
+		}
 	}
 }
 

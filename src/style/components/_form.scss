@@ -3,7 +3,7 @@
 
 .register-form {
 	max-width: 613px;
-    margin: 0 auto;
+    margin: 0 auto 60px;
 
     &__group {
         margin-bottom: 10px;
@@ -24,7 +24,7 @@
         width: 100%;
         outline: none;
         box-shadow: none;
-        @include text('main', 'sm');
+        @include text('main', 'md');
         padding: 10px 20px;
 
         &::-webkit-input-placeholder { color: map-get($colors, 'border-color'); }
@@ -44,12 +44,12 @@
     }
 
     &__button {
-        width: 198px;
-        height: 57px;
-        line-height: 57px;
+        max-width: 198px;
+        min-height: 57px;
+        padding: 16px 45px;
         display: block;
 		position: relative;
-		color: map-get($colors, 'main-white');
+        @include text('main-white', 'md');
 		text-align: center;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
@@ -71,7 +71,7 @@
 
     &__submit {
         display: flex;
-        gap: 10px;
+        gap: 15px;
         align-items: center;
     }
 
@@ -81,7 +81,11 @@
         user-select: none;
         cursor: pointer;
         display: flex;
-        gap: 10px;
+
+        &__text {
+            margin-left: -5px;
+            margin-top: -2px;
+        }
 
         &__checkbox {
             opacity: 0;
@@ -93,8 +97,8 @@
             width: var(--size);
             height: var(--size);
             border-radius: 0;
-            top: 3px;
-            left: 11px;
+            top: 0;
+            left: 0;
             box-shadow: none;
             position: absolute;
         }
@@ -111,13 +115,14 @@
 
                 &::after {
                     content: "";
-                    left: 2px;
-                    top: 2px;
+                    left: 50%;
+                    top: 50%;
                     width: 4px;
                     height: 4px;
                     background: map-get($colors, 'background-red');
                     display: block;
                     position: absolute;
+                    transform: translate(-50%, -50%);
                 }
             }
         }
@@ -132,7 +137,7 @@
 .success-message {
     display: none;
     gap: 15px;
-    margin-top: 15px;
+    margin-top: 22px;
 
     &_visible {
         display: flex;
@@ -143,6 +148,7 @@
         width: var(--size);
         height: var(--size);
         flex: none;
+        margin-top: 3px;
     }
 }
 

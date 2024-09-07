@@ -5,7 +5,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 40px;
+	padding: 30px 80px;
 	background: map-get($colors, 'main');
 	color: map-get($colors, 'main-white');
 
@@ -18,5 +18,9 @@
 	&__link {
 		color: map-get($colors, 'main-white');
 		border-bottom: 1px solid currentColor;
+
+		&:hover {
+			color: map-get($colors, 'background-red');
+		}
 	}
 }

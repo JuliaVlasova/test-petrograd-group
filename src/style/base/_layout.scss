@@ -14,23 +14,26 @@
 	max-width: 794px;
 	position: relative;
 	z-index: 10;
+	margin-left: 50px;
 
 	&__text {
-		@include text('background-red', 'bg', 'italic');
+		@include text('background-red', 'bg');
+		font-family: 'tt_commons_trialitalic';
+		margin-left: 10px;
 	}
 
 	&__h1 {
 		@include heading('1');
 		text-transform: uppercase;
-		margin-bottom: 40px;
+		margin-bottom: 50px;
 	}
 
 	&__button-shape {
-		transform: skewX(-10deg);
+		transform: skewX(-15deg);
 		border-radius: 3px;
 		background: map-get($colors, 'background-red');
 		display: block;
-		width: 205px;
+		width: 193px;
 		height: 50px;
 		position: absolute;
 		top: 0;
@@ -46,9 +49,11 @@
 	&__button {
 		display: block;
 		position: relative;
-		width: 205px;
-		height: 50px;
-		line-height: 50px;
+		max-width: 195px;
+		min-height: 50px;
+		color: #F1F1F1;
+		margin-left: 15px;
+		padding: 14px 20px;
 		color: map-get($colors, 'main-white');
 		text-align: center;
 		letter-spacing: 0.04em;
@@ -70,8 +75,12 @@
 }
 
 section {
-	height: 100vh;
+	min-height: 100vh;
     position: relative;
+
+	@media screen and (max-height: 700px) {
+		min-height: unset;
+	}
 }
 
 .section {
@@ -84,12 +93,13 @@ section {
 
 	&-1 {
 		padding-top: 184px;
+		padding-bottom: 180px;
 
 		&::after {
 			content: "";
 			top: 0;
-			right: -200px;
-			transform: skewX(-11deg);
+			right: -243px;
+			transform: skewX(-6.3deg);
 			width: 653px;
 			height: 100%;
 			background: map-get($colors, 'background-red');
@@ -101,10 +111,18 @@ section {
 
 	&-2 {
 		background: map-get($colors, 'background-red');
+
+		@media screen and (max-height: 700px) {
+			padding: 106px 0;
+		}
 	}
 
 	&-3 {
 		background: map-get($colors, 'background-red');
+
+		@media screen and (max-height: 700px) {
+			padding: 106px 0;
+		}
 	}
 
 	&-4 {
@@ -118,12 +136,12 @@ section {
 		}
 	}
 }
-
+  
 .top-bike {
 	position: absolute;
 	z-index: 2;
-	top: 0;
-	right: 0;
+	top: 68px;
+    right: 14px;
 }
 
 .animated-text {
@@ -134,21 +152,23 @@ section {
 	transform: translate(-50%, -50%);
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: 50px;
+    margin-top: -13px;
 
 	&__inner {
 		display: flex;
-		gap: 20px;
+		gap: 35px;
 
 		&:nth-child(odd) {
 			.animated-text__block {
 				&:nth-child(odd) {
-					color: map-get($colors, 'main-white');
-				}
+					color: map-get($colors, 'background-red');
+					text-shadow: -2px -2px 0 map-get($colors, 'main-white'), 2px -2px 0 map-get($colors, 'main-white'), -2px 2px 0 map-get($colors, 'main-white'), 2px 2px 0 map-get($colors, 'main-white');
+					letter-spacing: .06em;
+				} 
 
 				&:nth-child(even) {
-					color: map-get($colors, 'background-red');
-					text-shadow: -3px -3px 1px map-get($colors, 'main-white'), 3px -3px 0 map-get($colors, 'main-white'), -3px 3px 0 map-get($colors, 'main-white'), 3px 3px 0 map-get($colors, 'main-white');
+					color: map-get($colors, 'main-white');
 				}
 			}
 		}
@@ -156,12 +176,13 @@ section {
 		&:nth-child(even) {
 			.animated-text__block {
 				&:nth-child(odd) {
-					color: map-get($colors, 'background-red');
-					text-shadow: -3px -3px 1px map-get($colors, 'main-white'), 3px -3px 0 map-get($colors, 'main-white'), -3px 3px 0 map-get($colors, 'main-white'), 3px 3px 0 map-get($colors, 'main-white');
-				} 
+					color: map-get($colors, 'main-white');
+				}
 
 				&:nth-child(even) {
-					color: map-get($colors, 'main-white');
+					color: map-get($colors, 'background-red');
+					text-shadow: -2px -2px 0 map-get($colors, 'main-white'), 2px -2px 0 map-get($colors, 'main-white'), -2px 2px 0 map-get($colors, 'main-white'), 2px 2px 0 map-get($colors, 'main-white');
+					letter-spacing: .06em;
 				}
 			}
 		}
@@ -183,8 +204,14 @@ section {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	position: relative;
+	position: absolute;
 	z-index: 10;
+
+	@media screen and (max-height: 700px) {
+		top: 0;
+		transform: translate(-50%, 0);
+		position: relative;
+	}
 
 	&__image {
 		position: relative;
@@ -192,13 +219,17 @@ section {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		height: 100%;
+	}
+
+	&__img {
+		margin-top: 40px;
+    	margin-left: -142px;
 	}
 
 	&__button {
-		--size: 135px;
+		--size: 136px;
 		position: absolute;
-		bottom: -65px;
-    	right: -60px;
 		z-index: 2;
 		width: var(--size);
 		height: var(--size);
@@ -207,8 +238,66 @@ section {
 		justify-content: center;
 		cursor: pointer;
 
-		canvas {
-			position: absolute;
+		&_video {
+			bottom: -69px;
+			right: -67px;
+
+			&:hover {
+				path {
+					fill: map-get($colors, 'background-red');
+				}
+
+				circle {
+					stroke: map-get($colors, 'background-red');
+				}
+			}
+	
+			&:active {
+				path {
+					fill: map-get($colors, 'dark-red');
+				}
+
+				circle {
+					stroke: map-get($colors, 'dark-red');
+				}
+			}
+		}
+
+		&_go {
+			bottom: -58px;
+			right: -67px;
+
+			&:hover {
+				circle {
+					stroke: map-get($colors, 'background-red');
+				}
+
+				path {
+					&:not(.path-stroke) {
+						fill: map-get($colors, 'background-red');
+					}
+					
+					&.path-stroke {
+						stroke: map-get($colors, 'background-red');
+					}
+				}
+			}
+	
+			&:active {
+				circle {
+					stroke: map-get($colors, 'dark-red');
+				}
+
+				path {
+					&:not(.path-stroke) {
+						fill: map-get($colors, 'dark-red');
+					}
+					
+					&.path-stroke {
+						stroke: map-get($colors, 'dark-red');
+					}
+				}
+			}
 		}
 	}
 
@@ -221,35 +310,8 @@ section {
 	#video-bike {
 		width: 438px;
 		height: auto;
-	}
-
-	&__inner-button {
-		--size: 99px;
-		border: 0.5px solid map-get($colors, 'main');
-		background: map-get($colors, 'main-white');
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 100%;
-		width: var(--size);
-		height: var(--size);
-		flex: none;
-	}
-
-	&__arrow {
-		&_simple {
-			width: 29px;
-			height: 32px;
-			flex: none;
-		}
-
-		&_complex {
-			width: 27px;
-			height: 26px;
-			flex: none;
-		}
+		transform: scale(1.24) translate(0, -65px);
 	}
 }
-
 
 
