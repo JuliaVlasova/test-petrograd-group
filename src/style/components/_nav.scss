@@ -14,10 +14,6 @@ nav {
 	z-index: 100;
 }
 
-.header_absolute {
-	position: absolute;
-}
-
 .nav-mobile-burger {
 	--size: 40px;
 	
@@ -58,6 +54,17 @@ nav {
 	&__link {
 		padding: 32px 16px;
 	}
+}
+
+.p-logo {
+	width: 191px;
+	height: 46px;
+}
+
+.header {
+	&_absolute {
+		position: absolute;
+	}
 
 	&_dark {
 		.nav-buttons__link {
@@ -82,7 +89,12 @@ nav {
 	}
 }
 
-.p-logo {
-	width: 191px;
-	height: 46px;
+.animate-down {
+	position: fixed;
+	animation: animate-down 200ms ease-in-out;
+}
+
+@keyframes animate-down {
+	from {top: -80px}
+	to {top: 0}
 }
