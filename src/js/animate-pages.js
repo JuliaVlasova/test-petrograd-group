@@ -2,9 +2,10 @@
 
 $(document).ready(function() {
     let navHeight = $("nav").outerHeight();
+    let hafWindowHeight = $(window).height() / 2;
     let section1Height = $(".section-1").outerHeight();
     let section2Height = section1Height + $(".section-2").outerHeight();
-    let sectionsHeight = section1Height + $(".section-2").outerHeight() + $(".section-3").outerHeight();
+    let section3Height = section1Height + $(".section-2").outerHeight() + $(".section-3").outerHeight();
     let animateTextScroll = true;
 
     // Функции
@@ -47,7 +48,7 @@ $(document).ready(function() {
                     $("nav").removeClass("header_absolute header_dark").addClass("animate-down header_light");
                     $("svg#logo").addClass("light");
 
-                    if (scroll >= sectionsHeight) {
+                    if (scroll >= section3Height) {
                         $("nav").addClass("header_absolute header_dark").removeClass("header_light");
                         $("svg#logo").removeClass("light");
                     } else {
@@ -145,9 +146,22 @@ $(document).ready(function() {
         $(buttonInBlock).addClass("animated-opacity");
     }
 
+    // Анимация фона на 4 скрине
+    function animateBackground() {
+        let lastSection = $(".section-4");
+
+        $(window).scroll(function() {
+            let scroll = getCurrentScroll();
+
+            if(scroll > section3Height) {
+                $(lastSection).addClass("animated-background");
+            }
+        });
+    }
+
     handleHeader();
     animateTextOnScroll();
     animateVideoOnScroll();
     animateBikeImageOnScroll();
-   
+    animateBackground();
 });

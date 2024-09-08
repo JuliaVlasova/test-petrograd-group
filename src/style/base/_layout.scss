@@ -134,6 +134,10 @@ section {
 		form {
 			flex: 1;
 		}
+
+		&.animated-background {
+			animation: animate-background .6s linear;
+		}
 	}
 }
   
@@ -142,4 +146,15 @@ section {
 	z-index: 2;
 	top: 68px;
     right: 14px;
+}
+
+
+@keyframes animate-background {
+	from {
+		background: map-get($colors, 'background-red');
+	}
+
+	to {
+		background: map-get($colors, 'background-light');
+	}
 }
