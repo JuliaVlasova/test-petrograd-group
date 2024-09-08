@@ -49,10 +49,10 @@
 			transform: none;
 
 			&.animated-text__inner_animated {
-				animation: animate-top-frame 1s ease-in-out;
+				animation: animate-top-frame .5s ease-in-out;
 				
 				.animated-text__items {
-					animation: animate-text 2s linear infinite;
+					animation: animate-text .5s linear infinite;
 					animation-delay: 1s;
 				}
 	
@@ -63,6 +63,12 @@
 						animation-play-state: paused;
 					}
 				}
+
+				&_slow {
+					.animated-text__items {
+						animation: animate-text 20s linear infinite;
+					}
+				}
 			}
 		}
 
@@ -71,10 +77,10 @@
 			transform: none;
 
 			&.animated-text__inner_animated {
-				animation: animate-bottom-frame 1s ease-in-out;
+				animation: animate-bottom-frame .5s ease-in-out;
 
 				.animated-text__items {
-					animation: animate-text 2s linear infinite;
+					animation: animate-text .5s linear infinite;
 					animation-delay: 1s;
 					animation-direction: reverse;
 				}
@@ -84,6 +90,13 @@
 
 					.animated-text__items {
 						animation-play-state: paused;
+					}
+				}
+
+				&_slow {
+					.animated-text__items {
+						animation: animate-text 20s linear infinite;
+						animation-direction: reverse;
 					}
 				}
 			}

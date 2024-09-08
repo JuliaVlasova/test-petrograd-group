@@ -3,14 +3,16 @@
 $(document).ready(function() {
     let navHeight = $("nav").outerHeight();
     let section1Height = $(".section-1").outerHeight();
+    let section2Height = section1Height + $(".section-2").outerHeight();
     let sectionsHeight = section1Height + $(".section-2").outerHeight() + $(".section-3").outerHeight();
+    let animateTextScroll = true;
 
     // Функции
-    function getCurrentScroll() {
+    function getCurrentScroll() {  // Узнать текущий скролл
         return $(document).scrollTop();
     }
     
-    function isInViewport(element) {
+    function isInViewport(element) {  // Если элемент виден на экране
         let elementTop = $(element).offset().top;
         let elementBottom = elementTop + $(element).outerHeight();
     
@@ -20,7 +22,7 @@ $(document).ready(function() {
         return elementBottom > viewportTop && elementTop < viewportBottom;
     };
     
-    function startAnimation(items) {
+    function startAnimation(items) { 
         $(items).each(function() {
             $(this).removeClass("stop-animation");
         });
@@ -73,22 +75,27 @@ $(document).ready(function() {
         });
 
         $(window).scroll(function() {
-            if (isInViewport(itemVisible)) {
+            if (isInViewport(itemVisible) && animateTextScroll) {
                 setTimeout(function() {
                     stopAnimation(itemsToAnimate);
                 }.bind(startAnimation(itemsToAnimate)), 200);
+            } else if (animateTextScroll == false) {
+                startAnimation(itemsToAnimate);
             } else {
                 stopAnimation(itemsToAnimate);
             }
         });
     }
 
-    // Появление видео
+    // Появление видео 
     function animateVideoOnScroll() {
-        let bikeVisible = $(".section-2").find(".block-with-button");
-        $(bikeVisible).addClass("block-with-button_animated").addClass("stop-animation");
+        let bikeVisible = $(".section-2").find(".block-with-button__image");
+        let itemsToAnimate = $(".section-2").find(".animated-text__inner");
+        $(bikeVisible).addClass("block-with-button__image_animated").addClass("stop-animation");
 
         $(window).scroll(function() {
+            let scroll = getCurrentScroll();
+
             if (isInViewport(bikeVisible)) { 
                 setTimeout(function() {
                     stopAnimation(bikeVisible);
@@ -96,10 +103,51 @@ $(document).ready(function() {
             } else {
                 stopAnimation(bikeVisible);
             }
+
+            if(scroll > section1Height - navHeight) {
+                animateTextScroll = false;
+                startAnimation(itemsToAnimate);
+                $(itemsToAnimate).each(function() {
+                    $(this).addClass("animated-text__inner_animated_slow");
+                });
+
+                animateButton(".section-2");
+            }
         });
+    }
+
+    // Появление картинки 
+    function animateBikeImageOnScroll() {
+        let bikeVisible = $(".section-3").find(".block-with-button__image");
+        $(bikeVisible).addClass("block-with-button__image_animated").addClass("stop-animation");
+
+        $(window).scroll(function() {
+            let scroll = getCurrentScroll();
+
+            if (isInViewport(bikeVisible)) { 
+                setTimeout(function() {
+                    stopAnimation(bikeVisible);
+                }.bind(startAnimation(bikeVisible)), 200);
+            } else {
+                stopAnimation(bikeVisible);
+            }
+
+            if(scroll > section2Height - navHeight) {
+
+                animateButton(".section-3");
+            }
+        });
+    }
+
+    // Opacity для кнопок на 2 и 3 скрине
+    function animateButton(section) {
+        let buttonInBlock = $(section).find(".block-with-button").find(".block-with-button__link");
+        $(buttonInBlock).addClass("animated-opacity");
     }
 
     handleHeader();
     animateTextOnScroll();
     animateVideoOnScroll();
+    animateBikeImageOnScroll();
+   
 });
