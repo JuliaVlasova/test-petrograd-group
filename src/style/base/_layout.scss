@@ -144,66 +144,13 @@ section {
     right: 14px;
 }
 
-.animated-text {
-	position: absolute;
-	z-index: 1;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	display: flex;
-	flex-direction: column;
-	gap: 50px;
-    margin-top: -13px;
-
-	&__inner {
-		display: flex;
-		gap: 35px;
-
-		&:nth-child(odd) {
-			.animated-text__block {
-				&:nth-child(odd) {
-					color: map-get($colors, 'background-red');
-					text-shadow: -2px -2px 0 map-get($colors, 'main-white'), 2px -2px 0 map-get($colors, 'main-white'), -2px 2px 0 map-get($colors, 'main-white'), 2px 2px 0 map-get($colors, 'main-white');
-					letter-spacing: .06em;
-				} 
-
-				&:nth-child(even) {
-					color: map-get($colors, 'main-white');
-				}
-			}
-		}
-
-		&:nth-child(even) {
-			.animated-text__block {
-				&:nth-child(odd) {
-					color: map-get($colors, 'main-white');
-				}
-
-				&:nth-child(even) {
-					color: map-get($colors, 'background-red');
-					text-shadow: -2px -2px 0 map-get($colors, 'main-white'), 2px -2px 0 map-get($colors, 'main-white'), -2px 2px 0 map-get($colors, 'main-white'), 2px 2px 0 map-get($colors, 'main-white');
-					letter-spacing: .06em;
-				}
-			}
-		}
-	}
-
-	&__block {
-		font-family: 'tt_commons_trialbold_italic';
-		font-size: 120px;
-		line-height: 100px;
-		letter-spacing: 0.03em;
-		text-transform: uppercase;
-	}
-}
-
 .block-with-button {
 	width: 438px;
 	height: 584px;
 	background: map-get($colors, 'main-white');
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%) rotate(0deg);
 	position: absolute;
 	z-index: 10;
 
@@ -211,6 +158,18 @@ section {
 		top: 0;
 		transform: translate(-50%, 0);
 		position: relative;
+	}
+
+	&_animated {
+		animation: block-with-button-animate 1s ease-in-out;
+
+		@media screen and (max-height: 700px) {
+			animation: block-with-button-animate-small-screen 1s ease-in-out;
+		}
+
+		&.stop-animation {
+			animation-play-state: paused;
+		}
 	}
 
 	&__image {
@@ -314,4 +273,23 @@ section {
 	}
 }
 
+@keyframes block-with-button-animate {
+	from {
+		transform: translate(-50%, 0) rotate(7deg);
+	}
+
+	to {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+}
+
+@keyframes block-with-button-animate-small-screen {
+	from {
+		transform: translate(-50%, 50%) rotate(7deg);
+	}
+
+	to {
+		transform: translate(-50%, 0) rotate(0deg);
+	}
+}
 

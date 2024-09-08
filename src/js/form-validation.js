@@ -99,9 +99,9 @@ $(document).ready(function() {
         validateCheckbox();
 
         if ($(".register-form__help-block").is(":visible") || $('.register-form-agree__checkbox').is(":checked") == false) {
-            $(".register-form__button").addClass("register-form__button_disabled");
+           // $(".register-form__button").addClass("register-form__button_disabled");
         } else {
-            $(".register-form__button").removeClass("register-form__button_disabled");
+           // $(".register-form__button").removeClass("register-form__button_disabled");
         }
     }
 
@@ -111,9 +111,9 @@ $(document).ready(function() {
 
     $(".register-form-agree").click(function() {
         if ($(".register-form__help-block").is(":visible") || $(formName).val() == "" || $('.register-form-agree__checkbox').is(":checked") == false) {
-            $(".register-form__button").addClass("register-form__button_disabled");
+          //  $(".register-form__button").addClass("register-form__button_disabled");
         } else {
-            $(".register-form__button").removeClass("register-form__button_disabled");
+           // $(".register-form__button").removeClass("register-form__button_disabled");
         }
     });
 });

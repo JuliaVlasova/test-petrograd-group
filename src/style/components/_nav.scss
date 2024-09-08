@@ -56,11 +56,6 @@ nav {
 	}
 }
 
-.p-logo {
-	width: 191px;
-	height: 46px;
-}
-
 .header {
 	&_absolute {
 		position: absolute;
@@ -99,10 +94,21 @@ nav {
 	to {top: 0}
 }
 
-svg #logo {
+svg#logo {
+	width: 191px;
+	height: 46px;
+	
+	path {
+		fill: map-get($colors, 'main');
+
+		&.fill-red {
+			fill: map-get($colors, 'background-red');
+		}
+	}
+
 	&.light {
 		path {
-			fill: #fff;
+			fill: map-get($colors, 'main-white');
 		}
 	}
 }
