@@ -8,6 +8,7 @@
 .p-wrapper {
 	background: map-get($colors, 'background-light');
 	overflow: hidden;
+	position: relative;
 }
 
 .top-block {
@@ -26,6 +27,11 @@
 		@include heading('1');
 		text-transform: uppercase;
 		margin-bottom: 50px;
+
+		@include breakpointUi(lt-lg) {
+			@include heading('3');
+			max-width: 310px;
+		}
 	}
 
 	&__button-shape {
@@ -89,6 +95,10 @@ section {
 		text-transform: uppercase;
 		margin-bottom: 20px;
 		text-align: center;
+
+		@include breakpointUi(lt-lg) {
+			@include heading('3');
+		}
 	}
 
 	&-1 {
@@ -146,6 +156,13 @@ section {
 	z-index: 2;
 	top: 68px;
     right: 14px;
+
+	&__img {
+		@include breakpointUi(lt-lg) {
+			width: 600px;
+			height: 505px;
+		}
+	}
 }
 
 
