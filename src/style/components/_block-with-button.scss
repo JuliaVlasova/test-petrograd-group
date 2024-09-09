@@ -1,0 +1,177 @@
+@use '../variables/_colors' as *;
+@use '../mixins/mixins' as *;
+
+
+.block-with-button {
+	width: 438px;
+	height: 584px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(0deg);
+	position: absolute;
+	z-index: 10;
+
+	@media screen and (max-height: 700px) {
+		top: 0;
+		transform: translate(-50%, 0);
+		position: relative;
+	}
+
+	.animated-opacity {
+		animation: animate-opacity 2s ease-in-out;
+	}
+
+	.animated-disappear {
+		display: none;
+		animation: animate-disappear 1s ease-in-out;
+	}
+
+	&__image {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		background: map-get($colors, 'main-white');
+
+		&_animated {
+			animation: block-with-button-animate .8s ease-in-out;
+	
+			&.stop-animation {
+				animation-play-state: paused;
+			}
+		}
+	}
+
+	&__img {
+		margin-top: 40px;
+    	margin-left: -142px;
+	}
+
+	&__link {
+		--size: 136px;
+		position: absolute;
+		z-index: 2;
+		width: var(--size);
+		height: var(--size);
+
+		&_video {
+			bottom: -69px;
+			right: -67px;
+		}
+
+		&_go {
+			bottom: -58px;
+			right: -67px;
+		}
+	}
+
+	&__button {
+		--size: 136px;
+		width: var(--size);
+		height: var(--size);
+
+		&_video {
+			&:hover {
+				path {
+					fill: map-get($colors, 'background-red');
+				}
+
+				circle {
+					stroke: map-get($colors, 'background-red');
+				}
+			}
+	
+			&:active {
+				path {
+					fill: map-get($colors, 'dark-red');
+				}
+
+				circle {
+					stroke: map-get($colors, 'dark-red');
+				}
+			}
+		}
+
+		&_go {
+			&:hover {
+				circle {
+					stroke: map-get($colors, 'background-red');
+				}
+
+				path {
+					&:not(.path-stroke) {
+						fill: map-get($colors, 'background-red');
+					}
+					
+					&.path-stroke {
+						stroke: map-get($colors, 'background-red');
+					}
+				}
+			}
+	
+			&:active {
+				circle {
+					stroke: map-get($colors, 'dark-red');
+				}
+
+				path {
+					&:not(.path-stroke) {
+						fill: map-get($colors, 'dark-red');
+					}
+					
+					&.path-stroke {
+						stroke: map-get($colors, 'dark-red');
+					}
+				}
+			}
+		}
+	}
+
+	.video-wrapper {
+		width: 438px;
+		height: 584px;
+		overflow: hidden;
+	}
+
+	#video-bike {
+		width: 438px;
+		height: auto;
+		transform: scale(1.24) translate(0, -65px);
+	}
+}
+
+@keyframes block-with-button-animate {
+	from {
+		transform: translate(0, 50%) rotate(7deg);
+	}
+
+	to {
+		transform: translate(0, 0) rotate(0deg);
+	}
+}
+
+@keyframes animate-opacity {
+	from {
+		opacity: .7;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes animate-disappear {
+	from {
+		display: block;
+	}
+
+	to {
+		display: none;
+	}
+}
+
+
+
+

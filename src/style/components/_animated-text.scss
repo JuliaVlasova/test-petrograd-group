@@ -1,6 +1,8 @@
 @use '../variables/_colors' as *;
 @use '../mixins/mixins' as *;
 
+$animation-time: .7s;
+
 .animated-text {
 	position: absolute;
 	z-index: 1;
@@ -49,11 +51,11 @@
 			transform: none;
 
 			&.animated-text__inner_animated {
-				animation: animate-top-frame .5s ease-in-out;
+				animation: animate-top-frame $animation-time ease-in-out;
 				
 				.animated-text__items {
-					animation: animate-text .5s linear infinite;
-					animation-delay: 1s;
+					animation: animate-text $animation-time linear infinite;
+					animation-delay: $animation-time * 2;
 				}
 	
 				&.stop-animation {
@@ -69,6 +71,12 @@
 						animation: animate-text 20s linear infinite;
 					}
 				}
+
+				&_fast {
+					.animated-text__items {
+						animation: animate-text 8s linear infinite;
+					}
+				}
 			}
 		}
 
@@ -77,11 +85,11 @@
 			transform: none;
 
 			&.animated-text__inner_animated {
-				animation: animate-bottom-frame .5s ease-in-out;
+				animation: animate-bottom-frame $animation-time ease-in-out;
 
 				.animated-text__items {
-					animation: animate-text .5s linear infinite;
-					animation-delay: 1s;
+					animation: animate-text $animation-time linear infinite;
+					animation-delay: $animation-time * 2;
 					animation-direction: reverse;
 				}
 	
@@ -96,6 +104,13 @@
 				&_slow {
 					.animated-text__items {
 						animation: animate-text 20s linear infinite;
+						animation-direction: reverse;
+					}
+				}
+
+				&_fast {
+					.animated-text__items {
+						animation: animate-text 8s linear infinite;
 						animation-direction: reverse;
 					}
 				}

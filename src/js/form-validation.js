@@ -1,13 +1,10 @@
 "use strict";
 
 $(document).ready(function() {
-    const formTel = $("#register-form-tel");
-    const formSite = $("#register-form-site");
     const formName = $("#register-form-name");
-
+    const formTel = $("#register-form-tel");
+   
     const noName = "Надо заполнить имя";
-    const noSite = "Надо ввести сайт";
-    const wrongSite = "Введен неверный сайт";
     const noTel = "Надо ввести номер телефона";
     const wrongTel = "Номер введен неверно";
 
@@ -26,31 +23,13 @@ $(document).ready(function() {
             if ($(formName).val() == "") {
                 $(formName).parents(".register-form__group").find(".hidden").show();
                 $(formName).parents(".register-form__group").find(".register-form__help-block").text(noName);
+                $(formName).addClass("register-form__field_error").removeClass("register-form__field_success");
                 verify = false;
                 return false;
             } else {
                 $(formName).parents(".register-form__group").find(".hidden").hide();
                 $(formName).parents(".register-form__group").find(".register-form__help-block").text();
-                verify = true;
-                return true;
-            }
-        }
-
-        
-        function validateSite() { // Проверка сайта
-            let formSiteValue = $(formSite).val();
-            if (formSiteValue == "") {
-                $(formSite).parents(".register-form__group").find(".hidden").show();
-                $(formSite).parents(".register-form__group").find(".register-form__help-block").text(noSite);
-                verify = false;
-                return false;
-            } else if(!urlPattern.test(formSiteValue)) {
-                $(formSite).parents(".register-form__group").find(".register-form__help-block").text(wrongSite);
-                verify = false;
-                return false;
-            } else {
-                $(formSite).parents(".register-form__group").find(".hidden").hide();
-                $(formSite).parents(".register-form__group").find(".register-form__help-block").text();
+                $(formName).removeClass("register-form__field_error").addClass("register-form__field_success");
                 verify = true;
                 return true;
             }
@@ -61,15 +40,18 @@ $(document).ready(function() {
             if (formTelValue == "") {
                 $(formTel).parents(".register-form__group").find(".hidden").show();
                 $(formTel).parents(".register-form__group").find(".register-form__help-block").text(noTel);
+                $(formTel).addClass("register-form__field_error").removeClass("register-form__field_success");
                 verify = false;
                 return false;
             }  else if(!digitsOnlyPattern.test(formTelValue)) {
                 $(formTel).parents(".register-form__group").find(".register-form__help-block").text(wrongTel);
+                $(formTel).addClass("register-form__field_error").removeClass("register-form__field_success");
                 verify = false;
                 return false;
             } else {
                 $(formTel).parents(".register-form__group").find(".hidden").hide();
                 $(formTel).parents(".register-form__group").find(".register-form__help-block").text();
+                $(formTel).removeClass("register-form__field_error").addClass("register-form__field_success");
                 verify = true;
                 return true;
             }
@@ -94,14 +76,15 @@ $(document).ready(function() {
         }
 
         validateName();
-        validateSite();
         validateTel();
         validateCheckbox();
 
         if ($(".register-form__help-block").is(":visible") || $('.register-form-agree__checkbox').is(":checked") == false) {
-           // $(".register-form__button").addClass("register-form__button_disabled");
+           $(".success-message").removeClass("success-message_visible");
         } else {
-           // $(".register-form__button").removeClass("register-form__button_disabled");
+            $(".success-message").addClass("success-message_visible");
+            $(formName).val("").removeClass("register-form__field_success");
+            $(formTel).val("").removeClass("register-form__field_success");
         }
     }
 
@@ -109,11 +92,7 @@ $(document).ready(function() {
         validateForm();
     });
 
-    $(".register-form-agree").click(function() {
-        if ($(".register-form__help-block").is(":visible") || $(formName).val() == "" || $('.register-form-agree__checkbox').is(":checked") == false) {
-          //  $(".register-form__button").addClass("register-form__button_disabled");
-        } else {
-           // $(".register-form__button").removeClass("register-form__button_disabled");
-        }
+    $(".register-form__button").on("click", function() {
+        validateForm();
     });
 });

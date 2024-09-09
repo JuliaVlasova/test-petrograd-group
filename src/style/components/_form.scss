@@ -38,8 +38,23 @@
         }
 
         &_error {
-            border: 1px solid map-get($colors, 'background-red');
             color: map-get($colors, 'background-red');
+            border: 1px solid currentColor;
+
+            &:focus, &:hover {
+                color: map-get($colors, 'background-red');
+                border: 1px solid currentColor;
+            }
+        }
+
+        &_success {
+            color: map-get($colors, 'main');
+            border: 1px solid currentColor;
+
+            &:focus, &:hover {
+                color: map-get($colors, 'main');
+                border: 1px solid currentColor;
+            }
         }
     }
 

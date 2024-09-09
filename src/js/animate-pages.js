@@ -7,6 +7,7 @@ $(document).ready(function() {
     let section2Height = section1Height + $(".section-2").outerHeight();
     let section3Height = section1Height + $(".section-2").outerHeight() + $(".section-3").outerHeight();
     let animateTextScroll = true;
+    let executed = false;
 
     // Функции
     function getCurrentScroll() {  // Узнать текущий скролл
@@ -88,12 +89,12 @@ $(document).ready(function() {
         });
     }
 
-    // Появление видео 
+    // Появление видео на 2 скрине
     function animateVideoOnScroll() {
         let bikeVisible = $(".section-2").find(".block-with-button__image");
         let itemsToAnimate = $(".section-2").find(".animated-text__inner");
         $(bikeVisible).addClass("block-with-button__image_animated").addClass("stop-animation");
-
+        
         $(window).scroll(function() {
             let scroll = getCurrentScroll();
 
@@ -105,7 +106,7 @@ $(document).ready(function() {
                 stopAnimation(bikeVisible);
             }
 
-            if(scroll > section1Height - navHeight) {
+            if(scroll >= section1Height - hafWindowHeight) {
                 animateTextScroll = false;
                 startAnimation(itemsToAnimate);
                 $(itemsToAnimate).each(function() {
@@ -113,37 +114,68 @@ $(document).ready(function() {
                 });
 
                 animateButton(".section-2");
+
+                if(scroll > section1Height && scroll < section3Height) {
+                    let scrollToGetNextScreen = (function() {
+                        return function() {
+                            if (!executed) {
+                                executed = true;
+
+                                setTimeout(function() {
+                                    $('html, body').animate({ scrollTop: section2Height }, 200);
+                                    animateBikeImage();
+                                }, 3000);
+                            }
+                        };
+                    })();
+
+                    setTimeout(function() {
+                        disappearButton(".section-2");
+                    }.bind(scrollToGetNextScreen()), 1000);
+                }
+            } 
+        });
+    }
+
+    // Появление картинки на 3 скрине
+    function animateBikeImageOnScroll() {
+        $(window).scroll(function() {
+            let scroll = getCurrentScroll();
+
+            if(scroll >= section2Height - navHeight) {
+                animateButton(".section-3");
+
+                if(scroll > section2Height + hafWindowHeight) {
+                    disappearButton(".section-3");
+                }
             }
         });
     }
 
-    // Появление картинки 
-    function animateBikeImageOnScroll() {
+    function animateBikeImage() {
         let bikeVisible = $(".section-3").find(".block-with-button__image");
-        $(bikeVisible).addClass("block-with-button__image_animated").addClass("stop-animation");
-
-        $(window).scroll(function() {
-            let scroll = getCurrentScroll();
-
-            if (isInViewport(bikeVisible)) { 
-                setTimeout(function() {
-                    stopAnimation(bikeVisible);
-                }.bind(startAnimation(bikeVisible)), 200);
-            } else {
-                stopAnimation(bikeVisible);
-            }
-
-            if(scroll > section2Height - navHeight) {
-
-                animateButton(".section-3");
-            }
-        });
+        $(bikeVisible).addClass("block-with-button__image_animated");
     }
 
     // Opacity для кнопок на 2 и 3 скрине
     function animateButton(section) {
         let buttonInBlock = $(section).find(".block-with-button").find(".block-with-button__link");
         $(buttonInBlock).addClass("animated-opacity");
+    }
+
+    // Исчезание для кнопок на 2 и 3 скрине
+    function disappearButton(section) {
+        let buttonInBlock = $(section).find(".block-with-button").find(".block-with-button__link");
+        $(buttonInBlock).addClass("animated-disappear");
+    }
+
+    // Aнимация текста на 3 скрине 
+    function animateText() {
+        let itemsToAnimate = $(".section-3").find(".animated-text__inner");
+        
+        $(itemsToAnimate).each(function() {
+            $(this).addClass("animated-text__inner_animated_fast");
+        });
     }
 
     // Анимация фона на 4 скрине
@@ -153,7 +185,7 @@ $(document).ready(function() {
         $(window).scroll(function() {
             let scroll = getCurrentScroll();
 
-            if(scroll > section3Height) {
+            if(scroll >= section3Height) {
                 $(lastSection).addClass("animated-background");
             }
         });
@@ -163,5 +195,6 @@ $(document).ready(function() {
     animateTextOnScroll();
     animateVideoOnScroll();
     animateBikeImageOnScroll();
+    animateText();
     animateBackground();
 });
