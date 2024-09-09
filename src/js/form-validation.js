@@ -3,19 +3,10 @@
 $(document).ready(function() {
     const formName = $("#register-form-name");
     const formTel = $("#register-form-tel");
-   
-    const noName = "Надо заполнить имя";
-    const noTel = "Надо ввести номер телефона";
+    const noName = "Поле обязательно к заполнению";
+    const noTel = "Поле обязательно к заполнению";
     const wrongTel = "Номер введен неверно";
-
-    const digitsOnlyPattern = /^\+7 \d\d\d \d\d\d-\d\d-\d\d/; // /^\d+$/;
-    const urlPattern = new RegExp('^(https?:\\/\\/)?'   + // проверка протокола
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'  + // проверка имени домена
-        '((\\d{1,3}\\.){3}\\d{1,3}))'                       + // проверка ip адреса 
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'                   + // проверка порта и пути
-        '(\\?[;&a-z\\d%_.~+=-]*)?'                          + // проверка параметров запроса
-        '(\\#[-a-z\\d_]*)?$','i');                            // проверка хэша
-
+    const digitsOnlyPattern = /^\+7 \d\d\d \d\d\d-\d\d-\d\d/;
 
     let validateForm = function() {
         let verify = "";
@@ -79,12 +70,14 @@ $(document).ready(function() {
         validateTel();
         validateCheckbox();
 
-        if ($(".register-form__help-block").is(":visible") || $('.register-form-agree__checkbox').is(":checked") == false) {
+        // Показать сообщение об успехе
+        if ($(".register-form__help-block").is(":visible") || $(".register-form-agree__checkbox").is(":checked") == false) {
            $(".success-message").removeClass("success-message_visible");
         } else {
             $(".success-message").addClass("success-message_visible");
             $(formName).val("").removeClass("register-form__field_success");
             $(formTel).val("").removeClass("register-form__field_success");
+            $(".register-form-agree__checkbox").prop('checked', false);
         }
     }
 
