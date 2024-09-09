@@ -4,10 +4,14 @@ $(document).ready(function() {
     let navHeight = $("nav").outerHeight();
     let hafWindowHeight = $(window).height() / 2;
     let section1Height = $(".section-1").outerHeight();
+    let section2 = $(".section-2");
+    let section3 = $(".section-3");
+    let textToChange = $(".section-2-3").find(".animated-text__block");
     let section2Height = section1Height + $(".section-2").outerHeight();
     let section3Height = section1Height + $(".section-2").outerHeight() + $(".section-3").outerHeight();
     let animateTextScroll = true;
     let executed = false;
+    let itemsToAnimate = $(".section-2-3").find(".animated-text__inner");
 
     // Функции
     function getCurrentScroll() {  // Узнать текущий скролл
@@ -49,7 +53,7 @@ $(document).ready(function() {
                     $("nav").removeClass("header_absolute header_dark").addClass("animate-down header_light");
                     $("svg#logo").addClass("light");
 
-                    if (scroll >= section3Height) {
+                    if (scroll >= section2Height) {
                         $("nav").addClass("header_absolute header_dark").removeClass("header_light");
                         $("svg#logo").removeClass("light");
                     } else {
@@ -69,9 +73,8 @@ $(document).ready(function() {
 
     // Aнимация текста на 2 скрине 
     function animateTextOnScroll() {
-        let itemVisible = $(".section-2").find(".animated-text");
-        let itemsToAnimate = $(".section-2").find(".animated-text__inner");
-        
+        let itemVisible = $(".section-2-3").find(".animated-text");
+
         $(itemsToAnimate).each(function() {
             $(this).addClass("animated-text__inner_animated").addClass("stop-animation");
         });
@@ -89,10 +92,16 @@ $(document).ready(function() {
         });
     }
 
+    function changeText(text) {
+        $(textToChange).each(function() {
+            $(this).text(text);
+        });
+    }
+
     // Появление видео на 2 скрине
     function animateVideoOnScroll() {
         let bikeVisible = $(".section-2").find(".block-with-button__image");
-        let itemsToAnimate = $(".section-2").find(".animated-text__inner");
+        let itemsToAnimate = $(".section-2-3").find(".animated-text__inner");
         $(bikeVisible).addClass("block-with-button__image_animated").addClass("stop-animation");
         
         $(window).scroll(function() {
@@ -109,22 +118,24 @@ $(document).ready(function() {
             if(scroll >= section1Height - hafWindowHeight) {
                 animateTextScroll = false;
                 startAnimation(itemsToAnimate);
+                animateButton(".section-2");
+
                 $(itemsToAnimate).each(function() {
                     $(this).addClass("animated-text__inner_animated_slow");
                 });
 
-                animateButton(".section-2");
-
-                if(scroll > section1Height && scroll < section3Height) {
+                if(scroll >= section1Height + navHeight && scroll < section3Height) {
                     let scrollToGetNextScreen = (function() {
                         return function() {
                             if (!executed) {
-                                executed = true;
-
                                 setTimeout(function() {
-                                    $('html, body').animate({ scrollTop: section2Height }, 200);
+                                    $(section2).addClass("section-2_animated");
+                                    $(section3).addClass("section-3_animated");
+                                    // change text to bike
+                                    changeText("велосипед");
+                                    animateTextFast();
                                     animateBikeImage();
-                                }, 3000);
+                                }, 0);
                             }
                         };
                     })();
@@ -132,6 +143,12 @@ $(document).ready(function() {
                     setTimeout(function() {
                         disappearButton(".section-2");
                     }.bind(scrollToGetNextScreen()), 1000);
+                } else {
+                    $(section2).removeClass("section-2_animated");
+                    $(section3).removeClass("section-3_animated");
+                    // change text to video
+                    changeText("видео");
+                    animateTextSlow();
                 }
             } 
         });
@@ -169,12 +186,17 @@ $(document).ready(function() {
         $(buttonInBlock).addClass("animated-disappear");
     }
 
-    // Aнимация текста на 3 скрине 
-    function animateText() {
-        let itemsToAnimate = $(".section-3").find(".animated-text__inner");
-        
+    // Aнимация текста быстрая
+    function animateTextFast() {
         $(itemsToAnimate).each(function() {
             $(this).addClass("animated-text__inner_animated_fast");
+        });
+    }
+
+    // Aнимация текста медленная
+    function animateTextSlow() {
+        $(itemsToAnimate).each(function() {
+            $(this).addClass("animated-text__inner_animated_slow");
         });
     }
 
@@ -195,6 +217,5 @@ $(document).ready(function() {
     animateTextOnScroll();
     animateVideoOnScroll();
     animateBikeImageOnScroll();
-    animateText();
     animateBackground();
 });
