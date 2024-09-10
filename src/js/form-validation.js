@@ -35,6 +35,7 @@ $(document).ready(function() {
                 verify = false;
                 return false;
             }  else if(!digitsOnlyPattern.test(formTelValue)) {
+                $(formTel).parents(".register-form__group").find(".hidden").show();
                 $(formTel).parents(".register-form__group").find(".register-form__help-block").text(wrongTel);
                 $(formTel).addClass("register-form__field_error").removeClass("register-form__field_success");
                 verify = false;
@@ -69,16 +70,6 @@ $(document).ready(function() {
         validateName();
         validateTel();
         validateCheckbox();
-
-        // Показать сообщение об успехе
-        if ($(".register-form__help-block").is(":visible") || $(".register-form-agree__checkbox").is(":checked") == false) {
-           $(".success-message").removeClass("success-message_visible");
-        } else {
-            $(".success-message").addClass("success-message_visible");
-            $(formName).val("").removeClass("register-form__field_success");
-            $(formTel).val("").removeClass("register-form__field_success");
-            $(".register-form-agree__checkbox").prop('checked', false);
-        }
     }
 
     $(".register-form__field").on("input", function() {
@@ -87,5 +78,15 @@ $(document).ready(function() {
 
     $(".register-form__button").on("click", function() {
         validateForm();
+
+         // Показать сообщение об успехе
+         if ($(".register-form__help-block").is(":visible") || $(".register-form-agree__checkbox").is(":checked") == false) {
+            $(".success-message").removeClass("success-message_visible");
+         } else {
+            $(".success-message").addClass("success-message_visible");
+            $(formName).val("").removeClass("register-form__field_success");
+            $(formTel).val("").removeClass("register-form__field_success");
+            $(".register-form-agree__checkbox").prop('checked', false);
+         }
     });
 });
