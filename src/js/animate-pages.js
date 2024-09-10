@@ -113,7 +113,13 @@ $(document).ready(function() {
                     $(this).addClass("animated-text__inner_animated_slow");
                 });
 
-                animateButton(".section-2");
+                appearButton(".section-2");
+
+                if(scroll > section1Height + hafWindowHeight) {
+                    disappearButton(".section-2");
+                } else if(scroll < section2Height) {
+                    appearButton(".section-2");
+                }
 
                 if(scroll > section1Height + 10) {
                     let scrollToGetNextScreen = (function() {
@@ -128,10 +134,7 @@ $(document).ready(function() {
                             }
                         };
                     })();
-                    disappearButton(".section-2");
                     scrollToGetNextScreen();
-                } else if(scroll < section2Height) {
-                    appearButton(".section-2");
                 }
             } 
         });
@@ -142,8 +145,8 @@ $(document).ready(function() {
         $(window).scroll(function() {
             let scroll = getCurrentScroll();
 
-            if(scroll >= section2Height - navHeight) {
-                animateButton(".section-3");
+            if(scroll >= section2Height) {
+                appearButton(".section-3");
 
                 if(scroll > section2Height + hafWindowHeight) {
                     disappearButton(".section-3");
@@ -157,12 +160,6 @@ $(document).ready(function() {
     function animateBikeImage() {
         let bikeVisible = $(".section-3").find(".block-with-button__image");
         $(bikeVisible).addClass("block-with-button__image_animated");
-    }
-
-    // Opacity для кнопок на 2 и 3 скрине
-    function animateButton(section) {
-        let buttonInBlock = $(section).find(".block-with-button").find(".block-with-button__link");
-        $(buttonInBlock).addClass("animated-opacity");
     }
 
     // Исчезание для кнопок на 2 и 3 скрине
