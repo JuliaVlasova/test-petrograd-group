@@ -146,6 +146,7 @@ $(document).ready(function() {
                 if(scroll > section1Height + 10 && scroll < section2Height) {
                     if(scrollDown) {
                         scrollSum += 1;
+                        console.log(scrollSum);
 
                         let scrollToGetNextScreen = (function() {
                             return function() {
@@ -157,13 +158,13 @@ $(document).ready(function() {
                         })();
 
                         if(scrollSum < 5) {
-                            $('html, body').animate({ scrollTop: section1Height }, 0);
                             setTimeout(showBikeImage, 500);         
-                        } else if(scrollSum > 10) {
+                        } 
+
+                        if(scrollSum > 10) {
                             scrollToGetNextScreen();              
                         } 
                     } else {
-                        $('html, body').animate({ scrollTop: section1Height }, 0);
                         setTimeout(showBikeVideo, 500);  
                         scrollSum = 0;
                     }   
