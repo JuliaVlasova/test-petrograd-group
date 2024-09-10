@@ -179,10 +179,9 @@ section {
 
 	&-2 {
 		z-index: 4;
+		padding: 106px 0;
 
 		@media screen and (max-height: 700px) {
-			padding: 106px 0;
-
 			@include breakpointUi(lt-md) {
 				padding: 180px 0;
 			}
@@ -202,10 +201,9 @@ section {
 
 	&-3 {
 		z-index: 5;
+		padding: 106px 0;
 
 		@media screen and (max-height: 700px) {
-			padding: 106px 0;
-
 			@include breakpointUi(lt-md) {
 				padding: 180px 0;
 			}

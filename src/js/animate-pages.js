@@ -146,7 +146,6 @@ $(document).ready(function() {
                 if(scroll > section1Height + 10 && scroll < section2Height) {
                     if(scrollDown) {
                         scrollSum += 1;
-                        console.log(scrollSum);
 
                         let scrollToGetNextScreen = (function() {
                             return function() {
@@ -159,9 +158,7 @@ $(document).ready(function() {
 
                         if(scrollSum < 5) {
                             setTimeout(showBikeImage, 500);         
-                        } 
-
-                        if(scrollSum > 10) {
+                        } else if(scrollSum > 10) {
                             scrollToGetNextScreen();              
                         } 
                     } else {
