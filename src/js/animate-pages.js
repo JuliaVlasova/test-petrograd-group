@@ -1,7 +1,9 @@
 "use strict";
 
 $(document).ready(function() {
-    let navHeight = $("nav").outerHeight();
+    let svgLogo = $("svg#logo");
+    let nav = $("nav");
+    let navHeight = $(nav).outerHeight();
     let hafWindowHeight = $(window).height() / 2;
     let section1Height = $(".section-1").outerHeight();
     let section2Height = section1Height + $(".section-2").outerHeight();
@@ -43,26 +45,26 @@ $(document).ready(function() {
             let scroll = getCurrentScroll();
 
             if (scroll >= navHeight) {
-                $("nav").addClass("header_absolute");
+                $(nav).addClass("header_absolute");
 
                 if (scroll >= section1Height) {
-                    $("nav").removeClass("header_absolute header_dark").addClass("animate-down header_light");
-                    $("svg#logo").addClass("light");
+                    $(nav).removeClass("header_absolute header_dark").addClass("animate-down header_light");
+                    $(svgLogo).addClass("light");
 
                     if (scroll >= section3Height) {
-                        $("nav").addClass("header_absolute header_dark").removeClass("header_light");
-                        $("svg#logo").removeClass("light");
+                        $(nav).addClass("header_absolute header_dark").removeClass("header_light");
+                        $(svgLogo).removeClass("light");
                     } else {
-                        $("nav").removeClass("header_absolute header_dark").addClass("header_light");
-                        $("svg#logo").addClass("light");
+                        $(nav).removeClass("header_absolute header_dark").addClass("header_light");
+                        $(svgLogo).addClass("light");
                     }
                 } else {
-                    $("nav").addClass("header_absolute header_dark").removeClass("animate-down header_light");
-                    $("svg#logo").removeClass("light");
+                    $(nav).addClass("header_absolute header_dark").removeClass("animate-down header_light");
+                    $(svgLogo).removeClass("light");
                 }
             } else {
-                $("nav").removeClass("header_absolute");
-                $("svg #logo").removeClass("light");
+                $(nav).removeClass("header_absolute");
+                $(svgLogo).removeClass("light");
             }
         });
     }
