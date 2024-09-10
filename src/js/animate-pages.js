@@ -115,7 +115,7 @@ $(document).ready(function() {
 
                 animateButton(".section-2");
 
-                if(scroll > section1Height && scroll < section3Height) {
+                if(scroll > section1Height + 10) {
                     let scrollToGetNextScreen = (function() {
                         return function() {
                             if (!executed) {
@@ -124,14 +124,14 @@ $(document).ready(function() {
                                 setTimeout(function() {
                                     $('html, body').animate({ scrollTop: section2Height }, 200);
                                     animateBikeImage();
-                                }, 3000);
+                                }, 1000);
                             }
                         };
                     })();
-
-                    setTimeout(function() {
-                        disappearButton(".section-2");
-                    }.bind(scrollToGetNextScreen()), 1000);
+                    disappearButton(".section-2");
+                    scrollToGetNextScreen();
+                } else if(scroll < section2Height) {
+                    appearButton(".section-2");
                 }
             } 
         });
@@ -147,6 +147,8 @@ $(document).ready(function() {
 
                 if(scroll > section2Height + hafWindowHeight) {
                     disappearButton(".section-3");
+                } else {
+                    appearButton(".section-3");
                 }
             }
         });
@@ -166,7 +168,13 @@ $(document).ready(function() {
     // Исчезание для кнопок на 2 и 3 скрине
     function disappearButton(section) {
         let buttonInBlock = $(section).find(".block-with-button").find(".block-with-button__link");
-        $(buttonInBlock).addClass("animated-disappear");
+        $(buttonInBlock).removeClass("animated-appear").addClass("animated-disappear");
+    }
+
+    // Появление для кнопок на 2 и 3 скрине
+    function appearButton(section) {
+        let buttonInBlock = $(section).find(".block-with-button").find(".block-with-button__link");
+        $(buttonInBlock).removeClass("animated-disappear").addClass("animated-appear");
     }
 
     // Aнимация текста на 3 скрине 
