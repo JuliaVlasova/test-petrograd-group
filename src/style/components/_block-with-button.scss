@@ -11,6 +11,12 @@
 	position: absolute;
 	z-index: 10;
 
+	@include breakpointUi(lt-md) {
+		width: 330px;
+		height: 441px;
+		top: 47%;
+	}
+
 	@media screen and (max-height: 700px) {
 		top: 0;
 		transform: translate(-50%, 0);
@@ -36,7 +42,7 @@
 		background: map-get($colors, 'main-white');
 
 		&_animated {
-			animation: block-with-button-animate .8s ease-in-out;
+			animation: block-with-button-animate .4s ease-in-out;
 	
 			&.stop-animation {
 				animation-play-state: paused;
@@ -47,6 +53,18 @@
 	&__img {
 		margin-top: 40px;
     	margin-left: -142px;
+
+		@include breakpointUi(lt-md) {
+			margin-top: 30px;
+			margin-left: 0;
+		}
+
+		img {
+			@include breakpointUi(lt-md) {
+				width: 330px;
+				height: 371px;
+			}
+		}
 	}
 
 	&__link {
@@ -59,11 +77,29 @@
 		&_video {
 			bottom: -69px;
 			right: -67px;
+
+			@include breakpointUi(lt-md) {
+				right: unset;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				bottom: unset;
+			}
 		}
 
 		&_go {
 			bottom: -58px;
 			right: -67px;
+
+			@include breakpointUi(lt-md) {
+				right: unset;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				bottom: unset;
+			}
+		}
+
+		@include breakpointUi(lt-md) {
+			--size: 100px;
 		}
 	}
 
@@ -71,6 +107,10 @@
 		--size: 136px;
 		width: var(--size);
 		height: var(--size);
+
+		@include breakpointUi(lt-md) {
+			--size: 100px;
+		}
 
 		&_video {
 			&:hover {
@@ -133,12 +173,23 @@
 		width: 438px;
 		height: 584px;
 		overflow: hidden;
+
+		@include breakpointUi(lt-md) {
+			width: 330px;
+			height: 441px;
+		}
 	}
 
 	#video-bike {
 		width: 438px;
 		height: auto;
 		transform: scale(1.24) translate(0, -65px);
+
+		@include breakpointUi(lt-md) {
+			width: 330px;
+			height: auto;
+			transform: scale(1.24) translate(0, 15px);
+		}
 	}
 }
 

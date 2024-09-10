@@ -15,7 +15,12 @@ $(document).ready(function() {
         showMobileMenu();
     });
 
-    $(".nav-mobile-menu-close").click(function() {
+    $(".nav-buttons_close-mobile").click(function() {
         hideMobileMenu();
+    });
+
+    $(".nav-buttons__link").click(function() {
+        hideMobileMenu();
+        $(".block-with-button__image").removeClass("block-with-button__image_animated");
     });
 });

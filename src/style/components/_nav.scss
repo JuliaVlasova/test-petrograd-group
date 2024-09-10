@@ -12,11 +12,15 @@ nav {
 	align-items: center;
 	padding: 0 45px 0 60px;
 	z-index: 100;
+
+	@include breakpointUi(lt-md) {
+		padding: 0 10px;
+		min-height: 62px;
+	}
 }
 
 .nav-mobile-burger {
 	--size: 40px;
-	
 	position: relative;
 	width: var(--size);
 	height: var(--size);
@@ -33,8 +37,9 @@ nav {
 		top: 50%;
 		width: 30px;
 		height: 3px;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		right: 0;
+		margin-top: -4px;
+		transform: translate(0, -50%);
 		background: map-get($colors, 'main');
 	}
 
@@ -44,10 +49,10 @@ nav {
 		top: 50%;
 		width: 10px;
 		height: 3px;
-		left: 50%;
-		transform: translate(-50%, -50%);
 		background: map-get($colors, 'main');
 		margin-top: 3px;
+		transform: translate(0, -50%);
+		right: 0;
 	}
 }
 
@@ -58,20 +63,69 @@ nav {
 	@include breakpointUi(lt-md) {
 		display: none;
 		position: fixed;
+		z-index: 70;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		flex-direction: column;
 		text-align: center;
-		gap: 15px;
+		gap: 0;
 		align-items: center;
 		justify-content: center;
 		background: map-get($colors, 'main-white');
 	}
 
+	&_opened {
+		@include breakpointUi(lt-md) {
+			display: flex;
+		}
+	}
+
+	&_close-mobile {
+		display: none;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		--size: 40px;
+		width: var(--size);
+		height: var(--size);
+		cursor: pointer;
+		
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: 30px;
+			height: 3px;
+			left: 0;
+			transform: translate(0, -50%) rotate(-45deg);
+			background: map-get($colors, 'main');
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: 30px;
+			height: 3px;
+			left: 0;
+			transform: translate(0, -50%) rotate(45deg);
+			background: map-get($colors, 'main');
+		}
+
+		@include breakpointUi(lt-md) {
+			display: block;
+		}
+	}
+
 	&__link {
-		padding: 32px 16px;
+		padding: 16px 16px;
+
+		@include breakpointUi(lt-md) {
+			width: 100%;
+			@include heading("3");
+		}
 	}
 }
 
@@ -106,6 +160,15 @@ nav {
 			&:hover {
 				color: map-get($colors, 'background-red');
 				background: map-get($colors, 'white');
+			}
+		}
+
+		.nav-mobile-burger {
+			&::before,
+			&::after {
+				@include breakpointUi(lt-md) {
+					background: map-get($colors, 'main-white');
+				}
 			}
 		}
 	}

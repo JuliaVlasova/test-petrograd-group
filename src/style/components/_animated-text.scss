@@ -14,6 +14,13 @@ $animation-time: .7s;
 	gap: 50px;
     margin-top: -13px;
 
+	@include breakpointUi(lt-md) {
+		gap: 414px;
+		margin-top: 0;
+		justify-content: space-around;
+		height: 100%;
+	}
+
 	&__inner {
 		display: flex;
 		gap: 35px;

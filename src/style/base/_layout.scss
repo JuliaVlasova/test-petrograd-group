@@ -17,6 +17,10 @@
 	z-index: 10;
 	margin-left: 50px;
 
+	@include breakpointUi(lt-md) {
+		margin-left: 0;
+	}
+
 	&__text {
 		@include text('background-red', 'bg');
 		font-family: 'tt_commons_trialitalic';
@@ -25,7 +29,7 @@
 		@include breakpointUi(lt-md) {
 			@include text('background-red', 'md');
 			text-align: center;
-			margin-bottom: 5px;
+			margin-bottom: 10px;
 			margin-left: 0;
 		}
 	}
@@ -37,7 +41,8 @@
 
 		@include breakpointUi(lt-lg) {
 			@include heading('3');
-			max-width: 310px;
+			max-width: 360px;
+			padding: 0 20px;
 		}
 
 		@include breakpointUi(lt-md) {
@@ -57,6 +62,11 @@
 		top: 0;
 		left: 0;
 		z-index: 1;
+
+		@include breakpointUi(lt-md) {
+			height: 44px;
+			width: 190px;
+		}
 	}
 
 	&__button-text {
@@ -69,7 +79,6 @@
 		position: relative;
 		max-width: 195px;
 		min-height: 50px;
-		color: #F1F1F1;
 		margin-left: 15px;
 		padding: 14px 20px;
 		color: map-get($colors, 'main-white');
@@ -79,6 +88,9 @@
 
 		@include breakpointUi(lt-md) {
 			margin: 0 auto 30px;
+			min-height: 44px;
+			max-width: 190px;
+			padding: 12px 15px;
 		}
 
 		&:hover {
@@ -114,6 +126,11 @@ section {
 
 		@include breakpointUi(lt-lg) {
 			@include heading('3');
+			padding: 0 20px;
+		}
+
+		@include breakpointUi(lt-md) {
+			margin-bottom: 40px;
 		}
 	}
 
@@ -123,6 +140,8 @@ section {
 
 		@include breakpointUi(lt-md) {
 			overflow: hidden;
+			padding-top: 100px;
+			padding-bottom: 80px;
 		}
 
 		&::after {
@@ -140,8 +159,8 @@ section {
 			@include breakpointUi(lt-md) {
 				top: unset;
 				right: unset;
-				bottom: -65px;
-				transform: skewY(6.3deg);
+				bottom: -50px;
+				transform: skewY(5.5deg);
 				width: 100%;
 				height: 250px;
 			}
@@ -153,6 +172,10 @@ section {
 
 		@media screen and (max-height: 700px) {
 			padding: 106px 0;
+
+			@include breakpointUi(lt-md) {
+				padding: 180px 0;
+			}
 		}
 	}
 
@@ -161,6 +184,10 @@ section {
 
 		@media screen and (max-height: 700px) {
 			padding: 106px 0;
+
+			@include breakpointUi(lt-md) {
+				padding: 180px 0;
+			}
 		}
 	}
 
@@ -169,6 +196,10 @@ section {
 		display: flex;
     	flex-direction: column;
 		padding-top: 183px;
+
+		@include breakpointUi(lt-md) {
+			padding-top: 177px;
+		}
 
 		form {
 			flex: 1;
@@ -193,8 +224,8 @@ section {
 		}
 
 		@include breakpointUi(lt-md) {
-			width: 300px;
-			height: 337px;
+			width: 360px;
+			height: 405px;
 			margin: 0 auto;
         	display: block;
 		}
@@ -202,6 +233,8 @@ section {
 
 	@include breakpointUi(lt-md) {
 		position: relative;
+		top: 32px;
+        right: 4px;
 	}
 }
 
