@@ -167,8 +167,29 @@ section {
 		}
 	}
 
-	&-2 {
+	&-2-3 {
+		max-height: 100vh;
+		overflow: hidden;
 		background: map-get($colors, 'background-red');
+
+		@media screen and (max-height: 700px) {
+			max-height: 800px;
+		}
+
+		&_fixed {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 60;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&-2 {
+		z-index: 4;
 
 		@media screen and (max-height: 700px) {
 			padding: 106px 0;
@@ -177,10 +198,21 @@ section {
 				padding: 180px 0;
 			}
 		}
+
+		&_animated {
+			transform: translate(0, -100%);
+			animation: animate-sections-2-3 1s ease-in-out;
+		}
+
+		&_animated-reverse {
+			transform: translate(0, 0);
+			animation: animate-sections-2-3 1s ease-in-out;
+			animation-direction: reverse;
+		}
 	}
 
 	&-3 {
-		background: map-get($colors, 'background-red');
+		z-index: 5;
 
 		@media screen and (max-height: 700px) {
 			padding: 106px 0;
@@ -188,6 +220,17 @@ section {
 			@include breakpointUi(lt-md) {
 				padding: 180px 0;
 			}
+		}
+
+		&_animated {
+			transform: translate(0, -100%);
+			animation: animate-sections-2-3 1s ease-in-out;
+		}
+
+		&_animated-reverse {
+			transform: translate(0, 0);
+			animation: animate-sections-2-3 1s ease-in-out;
+			animation-direction: reverse;
 		}
 	}
 
@@ -246,5 +289,16 @@ section {
 
 	to {
 		background: map-get($colors, 'background-light');
+	}
+}
+
+@keyframes animate-sections-2-3 {
+	from {
+		transform: translate(0, 0);
+
+	}
+
+	to {
+		transform: translate(0, -100%);
 	}
 }

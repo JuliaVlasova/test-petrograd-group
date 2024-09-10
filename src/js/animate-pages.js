@@ -5,18 +5,23 @@ $(document).ready(function() {
     let nav = $("nav");
     let navHeight = $(nav).outerHeight();
     let hafWindowHeight = $(window).height() / 2;
+    let section2 = $(".section-2");
+    let section3 = $(".section-3");
     let section1Height = $(".section-1").outerHeight();
-    let section2Height = section1Height + $(".section-2").outerHeight();
-    let section3Height = section1Height + $(".section-2").outerHeight() + $(".section-3").outerHeight();
+    let section2Height = section1Height + $(section2).outerHeight();
     let animateTextScroll = true;
+    let textToAnimate = $(".section-2-3").find(".animated-text__block");
+    let itemsToAnimate = $(".section-2-3").find(".animated-text__inner");
+    let scrollDown = false;
     let executed = false;
 
-    // Функции
-    function getCurrentScroll() {  // Узнать текущий скролл
+    // Узнать текущий скролл
+    function getCurrentScroll() {  
         return $(document).scrollTop();
     }
     
-    function isInViewport(element) {  // Если элемент виден на экране
+    // Если элемент виден на экране
+    function isInViewport(element) {  
         let elementTop = $(element).offset().top;
         let elementBottom = elementTop + $(element).outerHeight();
     
@@ -26,18 +31,43 @@ $(document).ready(function() {
         return elementBottom > viewportTop && elementTop < viewportBottom;
     };
     
+    // Начать анимацию текста
     function startAnimation(items) { 
         $(items).each(function() {
             $(this).removeClass("stop-animation");
         });
     }
     
+    // Поставить на паузу анимацию текста
     function stopAnimation(items) {
         $(items).each(function() {
             $(this).addClass("stop-animation");
         });
     }
-    // Функции END
+
+    // Проверка направления скролла
+    function checkScrollUpDown() {
+        let lastScrollTop = $(document).scrollTop();
+        window.addEventListener("scroll", function handleScroll() {
+            const scrollTopPosition = $(document).scrollTop();
+    
+            if (scrollTopPosition > lastScrollTop) { //scrolling down
+                scrollDown = true;
+            } else if (scrollTopPosition < lastScrollTop) { //scrolling up
+                scrollDown = false;
+            }
+            lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
+        
+
+            if(scrollDown) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+
+    checkScrollUpDown();
 
     // Управление положением навигации
     function handleHeader() {
@@ -51,7 +81,7 @@ $(document).ready(function() {
                     $(nav).removeClass("header_absolute header_dark").addClass("animate-down header_light");
                     $(svgLogo).addClass("light");
 
-                    if (scroll >= section3Height) {
+                    if (scroll >= section2Height) {
                         $(nav).addClass("header_absolute header_dark").removeClass("header_light");
                         $(svgLogo).removeClass("light");
                     } else {
@@ -71,8 +101,7 @@ $(document).ready(function() {
 
     // Aнимация текста на 2 скрине 
     function animateTextOnScroll() {
-        let itemVisible = $(".section-2").find(".animated-text");
-        let itemsToAnimate = $(".section-2").find(".animated-text__inner");
+        let itemVisible = $(".section-2-3").find(".animated-text");
         
         $(itemsToAnimate).each(function() {
             $(this).addClass("animated-text__inner_animated").addClass("stop-animation");
@@ -91,15 +120,15 @@ $(document).ready(function() {
         });
     }
 
-    // Появление видео на 2 скрине и ускоренная анимация текста
+    // События на 2-3 скрине
     function animateVideoOnScroll() {
         let bikeVisible = $(".section-2").find(".block-with-button__image");
-        let itemsToAnimate = $(".section-2").find(".animated-text__inner");
         $(bikeVisible).addClass("block-with-button__image_animated").addClass("stop-animation");
-        
+        let scrollSum = 0;
+
         $(window).scroll(function() {
             let scroll = getCurrentScroll();
-
+            
             if (isInViewport(bikeVisible)) { 
                 setTimeout(function() {
                     stopAnimation(bikeVisible);
@@ -111,52 +140,84 @@ $(document).ready(function() {
             if(scroll >= section1Height - hafWindowHeight) {
                 animateTextScroll = false;
                 startAnimation(itemsToAnimate);
-                $(itemsToAnimate).each(function() {
-                    $(this).addClass("animated-text__inner_animated_slow");
-                });
-
+                animateTextSlow();
                 appearButton(".section-2");
 
-                if(scroll > section1Height + hafWindowHeight) {
-                    disappearButton(".section-2");
-                } else if(scroll < section2Height) {
-                    appearButton(".section-2");
-                }
+                if(scroll > section1Height + 10 && scroll < section2Height) {
+                    if(scrollDown) {
+                        showBikeImage();
+                        scrollSum += 1;
 
-                if(scroll > section1Height + 10) {
-                    let scrollToGetNextScreen = (function() {
-                        return function() {
-                            if (!executed) {
-                                executed = true;
+                        let scrollToGetNextScreen = (function() {
+                            return function() {
+                                if (!executed) {
+                                    executed = true;
+                                    $('html, body').animate({ scrollTop: section2Height }, 0);
+                                    
+                                }
+                            };
+                        })();
 
-                                setTimeout(function() {
-                                    $('html, body').animate({ scrollTop: section2Height }, 200);
-                                    animateBikeImage();
-                                }, 1000);
-                            }
-                        };
-                    })();
-                    scrollToGetNextScreen();
+                        if(scrollSum > 10) {
+                            scrollToGetNextScreen();              
+                        }
+                    } else {
+                        showBikeVideo();
+                    }   
+                } else if(scroll >= section2Height) {
+                    showBikeImage();
                 }
             } 
         });
     }
 
-    // Появление картинки на 3 скрине
-    function animateBikeImageOnScroll() {
-        $(window).scroll(function() {
-            let scroll = getCurrentScroll();
+    // Показать картинку велосипеда 
+    function showBikeImage() {
+        $(section2).addClass("section-2_animated").removeClass("section-2_animated-reverse");
+        $(section3).addClass("section-3_animated").removeClass("section-3_animated-reverse");
+        disappearButton(".section-2");
+        appearButton(".section-3");
+        animateBikeImage();
+        animateTextFast();
+        changeText("велосипед");
+    }
 
-            if(scroll >= section2Height) {
-                appearButton(".section-3");
+    // Показать видео велосипеда
+    function showBikeVideo() {
+        $(section2).removeClass("section-2_animated").addClass("section-2_animated-reverse");
+        $(section3).removeClass("section-3_animated").addClass("section-3_animated-reverse");
+        disappearButton(".section-3");
+        appearButton(".section-2");
+        animateBikeVideo();
+        animateTextSlow();
+        changeText("видео");
+    }
 
-                if(scroll > section2Height + hafWindowHeight) {
-                    disappearButton(".section-3");
-                } else {
-                    appearButton(".section-3");
-                }
-            }
+    // Быстрая анимация текста
+    function animateTextFast() {
+        $(itemsToAnimate).each(function() {
+            $(this).removeClass("animated-text__inner_animated_slow").addClass("animated-text__inner_animated_fast");
         });
+    }
+
+    // Медленная анимация текста
+    function animateTextSlow() {
+        $(itemsToAnimate).each(function() {
+            $(this).addClass("animated-text__inner_animated_slow").removeClass("animated-text__inner_animated_fast");
+        });
+    }
+
+    // Замена текста
+    function changeText(text) {
+        $(textToAnimate).each(function() {
+            $(this).text(text);
+        });
+    }
+
+    // Анимация видео на 2 скрине
+    function animateBikeVideo() {
+        let bikeVisible = $(".section-2").find(".block-with-button__image");
+        $(bikeVisible).addClass("block-with-button__image_animated");
     }
 
     // Анимация картинки на 3 скрине
@@ -193,7 +254,7 @@ $(document).ready(function() {
         $(window).scroll(function() {
             let scroll = getCurrentScroll();
 
-            if(scroll >= section3Height) {
+            if(scroll >= section2Height) {
                 $(lastSection).addClass("animated-background");
             }
         });
@@ -207,7 +268,6 @@ $(document).ready(function() {
     handleHeader();
     animateTextOnScroll();
     animateVideoOnScroll();
-    animateBikeImageOnScroll();
     animateText();
     animateBackground();
 });

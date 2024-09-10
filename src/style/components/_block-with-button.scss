@@ -26,13 +26,13 @@
 	.animated-disappear {
 		display: none;
 		opacity: 0;
-		animation: animate-disappear 1s ease-in-out;
+		animation: animate-disappear 2s ease-in-out;
 	}
 
 	.animated-appear {
 		display: block;
 		opacity: 1;
-		animation: animate-disappear 1s ease-in-out;
+		animation: animate-disappear 2s ease-in-out;
 		animation-direction: reverse;
 	}
 
@@ -46,7 +46,11 @@
 		background: map-get($colors, 'main-white');
 
 		&_animated {
-			animation: block-with-button-animate .4s ease-in-out;
+			animation: block-with-button-animate .7s ease-in-out;
+
+			.section-3 & {
+				animation: block-with-button-animate 1.5s ease-in-out;
+			}
 	
 			&.stop-animation {
 				animation-play-state: paused;
