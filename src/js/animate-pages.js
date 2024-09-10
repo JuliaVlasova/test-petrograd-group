@@ -91,7 +91,7 @@ $(document).ready(function() {
         });
     }
 
-    // Появление видео на 2 скрине
+    // Появление видео на 2 скрине и ускоренная анимация текста
     function animateVideoOnScroll() {
         let bikeVisible = $(".section-2").find(".block-with-button__image");
         let itemsToAnimate = $(".section-2").find(".animated-text__inner");
@@ -159,6 +159,7 @@ $(document).ready(function() {
         });
     }
 
+    // Анимация картинки на 3 скрине
     function animateBikeImage() {
         let bikeVisible = $(".section-3").find(".block-with-button__image");
         $(bikeVisible).addClass("block-with-button__image_animated");
