@@ -1,5 +1,7 @@
 @use "../variables/heading" as *;
 
+// @include heading('2');
+
 @mixin heading(
   $size: null,
 ) {

@@ -145,7 +145,6 @@ $(document).ready(function() {
 
                 if(scroll > section1Height + 10 && scroll < section2Height) {
                     if(scrollDown) {
-                        showBikeImage();
                         scrollSum += 1;
 
                         let scrollToGetNextScreen = (function() {
@@ -153,19 +152,21 @@ $(document).ready(function() {
                                 if (!executed) {
                                     executed = true;
                                     $('html, body').animate({ scrollTop: section2Height }, 0);
-                                    
                                 }
                             };
                         })();
 
-                        if(scrollSum > 10) {
+                        if(scrollSum < 5) {
+                            $('html, body').animate({ scrollTop: section1Height }, 0);
+                            setTimeout(showBikeImage, 500);         
+                        } else if(scrollSum > 10) {
                             scrollToGetNextScreen();              
-                        }
+                        } 
                     } else {
-                        showBikeVideo();
+                        $('html, body').animate({ scrollTop: section1Height }, 0);
+                        setTimeout(showBikeVideo, 500);  
+                        scrollSum = 0;
                     }   
-                } else if(scroll >= section2Height) {
-                    showBikeImage();
                 }
             } 
         });
@@ -217,7 +218,7 @@ $(document).ready(function() {
     // Анимация видео на 2 скрине
     function animateBikeVideo() {
         let bikeVisible = $(".section-2").find(".block-with-button__image");
-        $(bikeVisible).addClass("block-with-button__image_animated");
+        $(bikeVisible).addClass("block-with-button__image_animated").removeClass("block-with-button__image_animated-reverse");
     }
 
     // Анимация картинки на 3 скрине
@@ -264,6 +265,11 @@ $(document).ready(function() {
     if(window.location.href.indexOf('github') > -1) {
         $(".video-text-github").show();
     }
+
+    // Устранение бага при клике по меню
+    $('a[href^="#video"]').click(function() {
+        showBikeVideo();
+    });
 
     handleHeader();
     animateTextOnScroll();
