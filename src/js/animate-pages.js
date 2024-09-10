@@ -191,6 +191,11 @@ $(document).ready(function() {
         });
     }
 
+    // Если видео не видно на GitHub
+    if(window.location.href.indexOf('github') > -1) {
+        $(".video-text-github").show();
+    }
+
     handleHeader();
     animateTextOnScroll();
     animateVideoOnScroll();

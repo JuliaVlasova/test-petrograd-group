@@ -193,6 +193,21 @@
 	}
 }
 
+.video-text-github {
+	display: none;
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    top: 0;
+    left: 0;
+    padding: 40px;
+    font-size: 30px;
+    line-height: 1.5;
+    z-index: 5;
+    text-align: center;
+}
+
 @keyframes block-with-button-animate {
 	from {
 		transform: translate(0, 50%) rotate(7deg);
