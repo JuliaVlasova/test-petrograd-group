@@ -14,10 +14,6 @@ $animation-time: .7s;
 	gap: 50px;
     margin-top: -13px;
 
-	.section-3 & {
-		display: none;
-	}
-
 	@include breakpointUi(lt-md) {
 		gap: 414px;
 		margin-top: 0;
@@ -96,7 +92,7 @@ $animation-time: .7s;
 			transform: none;
 
 			&.animated-text__inner_animated {
-				animation: animate-bottom-frame $animation-time ease-in-out;
+				animation: animate-top-frame $animation-time ease-in-out;
 
 				.animated-text__items {
 					animation: animate-text $animation-time linear infinite;
